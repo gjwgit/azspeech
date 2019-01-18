@@ -1,0 +1,14 @@
+--- # Azure Speech to Text
+meta:
+  name         : azspch2txt
+  title        : Azure Speech to Text cognitive services on the cloud.
+  keywords     : azure, speech
+  version      : 0.0.1
+  languages    : py
+  license      : mit
+  author       : Graham.Williams@togaware.com
+  url          : https://github.com/gjwgit/azspch2txt
+dependencies:
+  pip3: azure-cognitiveservices-speech
+commands:
+  demo    : Demonstrate the functionalitry of speech to text.
