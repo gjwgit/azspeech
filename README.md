@@ -31,5 +31,5 @@ To install and run the pre-built model:
     $ pip3 install mlhub
     $ ml install   azspeech2txt
     $ ml configure azspeech2txt
-    $ ml demo      azspeech2txt
+    $ ml score     azspeech2txt
 
