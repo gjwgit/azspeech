@@ -11,8 +11,8 @@ allowing up to 5,000 transactions per month is available from
 https://azure.microsoft.com/free/. Once set up visit
 https://ms.portal.azure.com and Create a resource under AI and Machine
 Learning called Speech Services. Once created you can access the web
-API subscription key from the portal. This will be prompted for in the
-demo.
+API subscription key from the portal by visiting the resource and
+choosing the Keys link. The key will be prompted for in the demo.
 
 Please note that this is *closed source software* which limits your
 freedoms and has no guarantee of ongoing availability.
