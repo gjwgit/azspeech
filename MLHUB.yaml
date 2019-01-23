@@ -3,7 +3,7 @@ meta:
   name         : azspeech2txt
   title        : Azure Speech to Text cognitive services on the cloud.
   keywords     : azure, speech
-  version      : 0.0.2
+  version      : 0.0.3
   languages    : py
   license      : mit
   author       : Graham.Williams@togaware.com
@@ -11,4 +11,4 @@ meta:
 dependencies:
   pip3: azure-cognitiveservices-speech
 commands:
-  score   : Use the functionalitry of speech to text.
+  live : Use the functionalitry of speech to text live.
