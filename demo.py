@@ -67,27 +67,28 @@ I've saved that information into the file:
 
         """ + os.getcwd() + "/" + KEY_FILE)
 
-# Creates an instance of a speech config with specified subscription
-# key and service region.
-
-speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
-
-# Creates a recognizer with the given settings.
-
-speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
-
 print("""
 Say something...
 """)
 
-# Performs recognition. recognize_once() returns when the first
-# utterance has been recognized, so it is suitable only for single
-# shot recognition like command or query. For long-running
+########################################################################
+#
+# Following is the code that does the actual work, creating an
+# instance of a speech config with the specified subscription key and
+# service region, then creating a recognizer with the given settings,
+# and then performing recognition. recognize_once() returns when the
+# first utterance has been recognized, so it is suitable only for
+# single shot recognition like command or query. For long-running
 # recognition, use start_continuous_recognition() instead, or if you
 # want to run recognition in a non-blocking manner, use
 # recognize_once_async().
 
-result = speech_recognizer.recognize_once()
+speech_config     = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
+speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
+result            = speech_recognizer.recognize_once()
+
+#
+########################################################################
 
 # Checks result.
 
