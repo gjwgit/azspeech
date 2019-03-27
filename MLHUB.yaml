@@ -10,5 +10,9 @@ meta:
   url          : https://github.com/gjwgit/azspeech2txt
 dependencies:
   pip3: azure-cognitiveservices-speech
+  files:
+    - https://mlhub.ai/empty.txt: private.py
+    - demo.py
+    - README.md
 commands:
   demo : Listen through microphone to convert speech to text.
