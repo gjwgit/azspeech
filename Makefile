@@ -29,17 +29,3 @@ ifneq ("$(wildcard $(INC_CLEAN))","")
   include $(INC_CLEAN)
 endif
 
-$(MODEL)_rpart_model.RData: train.R $(MODEL).csv
-	Rscript $<
-
-data.csv: train.R audit.csv
-	Rscript $<
-
-clean::
-	rm -rf README.txt output
-
-realclean:: clean
-	rm -f 	$(MODEL)_*.mlm
-	rm -f 	$(MODEL)_rpart_riskchart.pdf 	\
-		rpart_model.pdf			\
-		varimp.pdf			\
