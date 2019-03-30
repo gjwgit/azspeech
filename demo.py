@@ -35,7 +35,7 @@ import azure.cognitiveservices.speech as speechsdk
 # subscription_key = "a14d...ef24"
 # region = "southeastasia"
 
-if os.path.isfile(KEY_FILE) & os.path.getsize(KEY_FILE) != 0:
+if os.path.isfile(KEY_FILE) and os.path.getsize(KEY_FILE) != 0:
     print("""The following file has been found and is assumed to contain
 an Azure Speech Services subscription key and region. We will load 
 the file and use this information.
