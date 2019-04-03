@@ -28,14 +28,17 @@ Usage
 
 - To install mlhub 
 
-    $ pip3 install mlhub
+```shell
+$ pip3 install mlhub
+```
 
 - To install and run the pre-built model:
 
-    $ ml install   azspeech2txt
-    $ ml configure azspeech2txt
-    $ ml do        azspeech2txt
-
+```shell
+$ ml install   azspeech2txt
+$ ml configure azspeech2txt
+$ ml do        azspeech2txt
+```
 
 Interactive Use
 ---------------
