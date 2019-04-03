@@ -59,7 +59,8 @@ the file and use this information.
 Say something...
 
 > Recognized: Welcome to a demo of the prebuilt models for speech to
-> text provided through cognitive services.
+> text provided through azure's cognitive services. This cloud service 
+> accepts audio and then converts that into text, which it returns locally.
 
 Thank you for exploring the 'azspeech2txt' model.
 ```
