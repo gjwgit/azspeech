@@ -54,12 +54,12 @@ The following file has been found and is assumed to contain
 an Azure Speech Services subscription key and region. We will load 
 the file and use this information.
 
-    /home/gjw/.mlhub/azspeech2txt/private.py
+    /home/kt/.mlhub/azspeech2txt/private.py
 
 Say something...
 
-Recognized: Welcome to a demo of the prebuilt models for speech to
-text provided through cognitive services.
+> Recognized: Welcome to a demo of the prebuilt models for speech to
+> text provided through cognitive services.
 
 Thank you for exploring the 'azspeech2txt' model.
 ```
