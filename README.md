@@ -26,10 +26,40 @@ Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service
 Usage
 -----
 
-To install and run the pre-built model:
+- To install mlhub 
 
     $ pip3 install mlhub
+
+- To install and run the pre-built model:
+
     $ ml install   azspeech2txt
     $ ml configure azspeech2txt
-    $ ml score     azspeech2txt
+    $ ml do        azspeech2txt
 
+
+Interactive Use
+---------------
+
+```console
+$ ml do azspeech2txt 
+==============
+Speech to Text
+==============
+
+Welcome to a demo of the pre-built models for Speech to Text provided
+through Azure's Cognitive Services. This cloud service accepts audio
+and then converts that into text which it returns locally.
+
+The following file has been found and is assumed to contain
+an Azure Speech Services subscription key and region. We will load 
+the file and use this information.
+
+    /home/gjw/.mlhub/azspeech2txt/private.py
+
+Say something...
+
+Recognized: Welcome to a demo of the prebuilt models for speech to
+text provided through cognitive services.
+
+Thank you for exploring the 'azspeech2txt' model.
+```
