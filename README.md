@@ -67,3 +67,8 @@ Say something...
 
 Thank you for exploring the 'azspeech2txt' model.
 ```
+
+As you can see I read the first paragraph from the screen and the
+Azure Speech to Text service was quite accurate in its
+transcription. It is quite suitable, for example, to be used as a
+dictation tool.
