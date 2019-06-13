@@ -3,7 +3,7 @@ meta:
   name         : azspeech2txt
   title        : Azure Speech to Text cognitive services on the cloud.
   keywords     : azure, speech
-  version      : 1.2.0
+  version      : 1.2.1
   languages    : py
   license      : mit
   author       : Graham.Williams@togaware.com
@@ -19,4 +19,4 @@ dependencies:
 commands:
   demo : Listen through the microphone to convert speech to text.
   listen : Convert microphone to text as a command line.
-  tanscribe : Convert an audio file into text.
+  transcribe : Convert an audio file into text.
