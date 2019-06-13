@@ -3,7 +3,7 @@ meta:
   name         : azspeech2txt
   title        : Azure Speech to Text cognitive services on the cloud.
   keywords     : azure, speech
-  version      : 1.1.2
+  version      : 1.2.0
   languages    : py
   license      : mit
   author       : Graham.Williams@togaware.com
@@ -13,6 +13,7 @@ dependencies:
   files:
     - https://mlhub.ai/empty.txt: private.py
     - demo.py
+    - listen.py
     - transcribe.py
     - README.md
 commands:
