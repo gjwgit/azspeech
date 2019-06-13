@@ -1,9 +1,27 @@
+# -*- coding: utf-8 -*-
+
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 # Author: Graham.Williams@togaware.com
 #
-# AIM:
-# ml transcribe azspeech2txt sample.wav
+# ml transcribe azspeech2txt <path>
+
+import os
+import sys
+import time
+import argparse
+
+import azure.cognitiveservices.speech as speechsdk
+
+from mlhub.utils import get_cmd_cwd
+
+option_parser = argparse.ArgumentParser(add_help=False)
+
+option_parser.add_argument(
+    'path',
+    help='path to audio file')
+
+args = option_parser.parse_args()
 
 # Defaults.
 
@@ -12,14 +30,6 @@ DEFAULT_REGION = "southeastasia"
 
 subscription_key = None
 region = DEFAULT_REGION
-
-# Import the required libraries.
-
-import os
-import sys
-import azure.cognitiveservices.speech as speechsdk
-
-#from textwrap import fill
 
 # Prompt the user for the key and region and save into private.py for
 # future runs of the model. The contents of that file is:
@@ -50,61 +60,65 @@ I've saved that information into the file:
 
         """ + os.getcwd() + "/" + KEY_FILE)
 
-########################################################################
+# Create a callback to terminate the transcription once the full audio
+# has been transcribed.
+
+done = False
+
+def stop_cb(evt):
+    """Callback to stop continuous recognition upon receiving an event `evt`"""
+    speech_recognizer.stop_continuous_recognition()
+    global done
+    done = True
+
+# Create an instance of a speech config with the provided subscription
+# key and service region. Then create an audio configuration to load
+# the audio from file rather than from microphone. A sample audio file
+# is available as harvard.wav from:
 #
-# Following is the code that does the actual work, creating an
-# instance of a speech config with the specified subscription key and
-# service region, then creating a recognizer with the given settings,
-# and then performing recognition. recognize_once() returns when the
-# first utterance has been recognized, so it is suitable only for
-# single shot recognition like command or query. For long-running
-# recognition, use start_continuous_recognition() instead, or if you
-# want to run recognition in a non-blocking manner, use
-# recognize_once_async().
+# https://github.com/realpython/python-speech-recognition/raw/master/
+# audio_files/harvard.wav
+#
+# A recognizer is then created with the given settings.
 
-# harvard.wav comes from
-# https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
+pth = os.path.join(get_cmd_cwd(), args.path)
 
-speech_config     = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
-#audio_config      = speechsdk.audio.AudioConfig(use_default_microphone=False, filename='harvard.wav')
-audio_config      = speechsdk.audio.AudioConfig(use_default_microphone=False, filename='sample.wav')
-speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
-#result            = speech_recognizer.recognize_once()
-#result            = speech_recognizer.start_continuous_recognition()
+speech_config     = speechsdk.SpeechConfig(subscription=subscription_key,
+                                           region=region)
+audio_config      = speechsdk.audio.AudioConfig(use_default_microphone=False,
+                                                filename=pth)
+speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config,
+                                               audio_config=audio_config)
 
-#es = speechsdk.EventSignal(sr.recognized, sr.recognized)
+# We connect callbacks to the events fired by the speech
+# recognizer. Most are commented out as examples here to allow tracing
+# if you are interested in exploring the interactions with the server.
+#
+# speech_recognizer.recognizing.connect(lambda evt:
+#                                       print('RECOGNIZING: {}'.format(evt)))
+# speech_recognizer.session_started.connect(lambda evt:
+#                                           print('STARTED: {}'.format(evt)))
+# speech_recognizer.session_stopped.connect(lambda evt:
+#                                           print('STOPPED {}'.format(evt)))
+# speech_recognizer.canceled.connect(lambda evt:
+#                                    print('CANCELED {}'.format(evt)))
 
-#result = sr.recognize_once()
+# This callback provides the actual transcription.
 
-import time
-speech_recognizer.session_started.connect(lambda evt: print('SESSION STARTED: {}'.format(evt)))
-speech_recognizer.session_stopped.connect(lambda evt: print('\nSESSION STOPPED {}'.format(evt)))
-speech_recognizer.recognized.connect(lambda evt: print('\n{}'.format(evt.result.text)))
+speech_recognizer.recognized.connect(lambda evt:
+                                     print('{}'.format(evt.result.text)))
+
+# Stop continuous recognition on either session stopped or canceled
+# events.
+
+speech_recognizer.session_stopped.connect(stop_cb)
+speech_recognizer.canceled.connect(stop_cb)
+
+# Start continuous speech recognition, and then perform
+# recognition. For long-running recognition we use
+# start_continuous_recognition().
 
 speech_recognizer.start_continuous_recognition()
-time.sleep(1000)
-speech_recognizer.stop_continuous_recognition()
+while not done:
+    time.sleep(.5)
 
-speech_recognizer.session_started.disconnect_all()
-speech_recognizer.recognized.disconnect_all()
-speech_recognizer.session_stopped.disconnect_all()
-
-# Should be: the stale smell of old beer lingers it takes heat to
-# bring out the odor a cold dip restores health and zest a salt pickle
-# taste fine with ham tacos al Pastore are my favorite a zestful food
-# is the hot cross bun
-
-#
-########################################################################
-
-# Checks result.
-
-# if result.reason == speechsdk.ResultReason.RecognizedSpeech:
-#     print("Recognized: {}".format(result.text))
-# elif result.reason == speechsdk.ResultReason.NoMatch:
-#     print("No speech could be recognized: {}".format(result.no_match_details))
-# elif result.reason == speechsdk.ResultReason.Canceled:
-#     cancellation_details = result.cancellation_details
-#     print("Speech Recognition canceled: {}".format(cancellation_details.reason))
-#     if cancellation_details.reason == speechsdk.CancellationReason.Error:
-#         print("Error details: {}".format(cancellation_details.error_details))
