@@ -61,11 +61,14 @@ The *transcribe* command takes an audio file and transcribes it to
 standard output. For large audio files this can take some time.
 
 ```console
-$ ml transcribe azspeech2txt recording.wav
+$ ml transcribe azspeech2txt harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```
+
+The audio file comes from
+(Github)[https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav]
 
 Demonstration
 ---------------
