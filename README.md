@@ -67,8 +67,8 @@ A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```
 
-The audio file comes from
-(Github)[https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav]
+The audio file comes from Github:
+https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
 
 Demonstration
 ---------------
@@ -100,5 +100,5 @@ Thank you for exploring the 'azspeech2txt' model.
 
 As you can see I read the first paragraph from the screen and the
 Azure Speech to Text service was quite accurate in its
-transcription. It is quite suitable, for example, to be used as a
-dictation tool.
+transcription. If the accuracy for the particular accent is good then
+it is quite suitable, for example, to be used as a dictation tool.
