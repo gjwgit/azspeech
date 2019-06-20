@@ -1,3 +1,6 @@
+**Development Moved to https://github.com/Azure/mlhub**
+
+
 Azure Speech to Text
 ====================
 
