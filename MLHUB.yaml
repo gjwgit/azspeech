@@ -7,8 +7,7 @@ meta:
   languages    : py
   license      : mit
   author       : Graham.Williams@microsoft.com
-  url          : https://github.com/Azure/mlhub
-  yaml         : Azure/mlhub:azspeech2txt/MLHUB.yaml
+  url          : https://github.com/gjwgit/azspeech2txt
 dependencies:
   pip3: azure-cognitiveservices-speech
   files:
