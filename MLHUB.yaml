@@ -12,10 +12,10 @@ dependencies:
   pip3: azure-cognitiveservices-speech
   files:
     - https://mlhub.ai/empty.txt: private.py
-    - azspeech2txt/README.md
-    - azspeech2txt/demo.py
-    - azspeech2txt/listen.py
-    - azspeech2txt/transcribe.py
+    - README.md
+    - demo.py
+    - listen.py
+    - transcribe.py
 commands:
   demo       : Listen through the microphone to convert speech to text.
   listen     : Convert microphone to text as a command line.
