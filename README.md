@@ -1,6 +1,3 @@
-**Development Moved to https://github.com/Azure/mlhub**
-
-
 Azure Speech to Text
 ====================
 
@@ -14,17 +11,20 @@ commands that turn the service into a useful command line tool for
 transcribing from the microphone or from an audio file.
 
 A free Azure subscription allowing up to 5,000 transactions per month
-is available from https://azure.microsoft.com/free/. Once set up visit
-https://ms.portal.azure.com and Create a resource under AI and Machine
-Learning called Speech Services. Once created you can access the web
-API subscription key and endpoint from the portal. This will be
-prompted for in the demo.
+is available from https://azure.microsoft.com/free/. After subscribing
+visit https://ms.portal.azure.com and Create a resource under AI and
+Machine Learning called Speech Services. Once created you can access
+the web API subscription key and endpoint from the portal. This will
+be prompted for in the demo.
 
-Please note that this model is *closed source software* which limits
-your freedoms and has no guarantee of ongoing availability.
+This package is part of the [Azure on
+MLHub](https://github.com/Azure/mlhub) repository. Please note that
+these Azure models, unlike the MLHub models in general, use *closed
+source services* which have no guarantee of ongoing availability and
+do not come with the freedom to modify and share.
 
 Visit the github repository for more details:
-<https://github.com/Azure/mlhub/tree/master/azspeech2txt>
+<https://github.com/Azure/azspeech2txt>
 
 The Python code is based on the [Azure Speech Services Quick Start for
 Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
@@ -110,3 +110,4 @@ As you can see I read the first paragraph from the screen and the
 Azure Speech to Text service was quite accurate in its
 transcription. If the accuracy for the particular accent is good then
 it is quite suitable, for example, to be used as a dictation tool.
+
