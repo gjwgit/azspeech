@@ -2,7 +2,7 @@
 meta:
   name         : azspeech2txt
   title        : Azure Speech to Text cognitive services on the cloud.
-  keywords     : azure, speech, natural language understanding
+  keywords     : azure, speech, natural language understanding, dnn
   version      : 2.2.2
   languages    : py
   license      : mit
