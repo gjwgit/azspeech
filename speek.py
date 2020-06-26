@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Saturday 2020-06-27 07:26:46 AEST Graham Williams>
+# Time-stamp: <Saturday 2020-06-27 07:30:39 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -26,7 +26,7 @@ from mlhub.pkg import azkey
 # Process the command line.
 #-----------------------------------------------------------------------
 
-option_parser = argparse.ArgumentParser()
+option_parser = argparse.ArgumentParser(add_help=False)
 
 option_parser.add_argument(
     'word',
