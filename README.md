@@ -1,14 +1,15 @@
-Azure Speech to Text
-====================
+Azure Speech Capabilities
+=========================
 
 This [MLHub](https://mlhub.ai) package provides a quick introduction
-to the pre-built Speech to Text model provided through Azure's
-Cognitive Services. This service takes an audio signal and transcribes
-it to return the text.
+to the pre-built Speech models provided through Azure's Cognitive
+Services. This service can, for example, take an audio signal and
+transcribes it to return the text. It also supports speech synthesis.
 
 In addition to the demonstration this package provides a collection of
 commands that turn the service into a useful command line tool for
-transcribing from the microphone or from an audio file.
+transcribing from the microphone or from an audio file, and
+synthesising speech.
 
 A free Azure subscription allowing up to 5,000 transactions per month
 is available from https://azure.microsoft.com/free/. After subscribing
@@ -23,7 +24,7 @@ source services* which have no guarantee of ongoing availability and
 do not come with the freedom to modify and share.
 
 Visit the github repository for more details:
-<https://github.com/gjwgit/azspeech2txt>
+<https://github.com/gjwgit/azspeech>
 
 The Python code is based on the [Azure Speech Services Quick Start for
 Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
@@ -32,10 +33,10 @@ Quick Start
 -----------
 
 ```console
-$ ml demo azspeech2txt
-$ ml listen azspeech2txt
+$ ml demo azspeech
+$ ml listen azspeech
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
-$ ml transcribe azspeech2txt harvard.wav
+$ ml transcribe azspeech harvard.wav
 ```
 
 Usage
@@ -50,8 +51,8 @@ $ pip3 install mlhub
 - To install and configure the demo:
 
 ```console
-$ ml install   azspeech2txt
-$ ml configure azspeech2txt
+$ ml install   azspeech
+$ ml configure azspeech
 ```
 
 Command Line Tools
@@ -66,7 +67,7 @@ The *listen* command will listen for an utterance from the computer microphone
 for up to 15 seconds and then transcribe it to standard output.
 
 ```console
-$ ml listen azspeech2txt
+$ ml listen azspeech
 The machine learning hub is useful for demonstrating capability of 
 models as well as providing command line tools.
 ```
@@ -75,10 +76,10 @@ sentiment of the spoken word. In the first instance you might say
 *happy days* and in the second say *sad days*.
 
 ```console
-$ ml listen azspeech2txt | ml sentiment aztext
+$ ml listen azspeech | ml sentiment aztext
 0.96
 
-$ ml listen azspeech2txt | ml sentiment aztext
+$ ml listen azspeech | ml sentiment aztext
 0.07
 ```
 
@@ -88,7 +89,7 @@ The *transcribe* command takes an audio file and transcribes it to
 standard output. For large audio files this can take some time.
 
 ```console
-$ ml transcribe azspeech2txt harvard.wav
+$ ml transcribe azspeech harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
@@ -101,13 +102,13 @@ Demonstration
 -------------
 
 ```console
-$ ml demo azspeech2txt 
+$ ml demo azspeech 
 
-====================
-Azure Speech to Text
-====================
+=====================
+Azure Speech Services
+=====================
 
-Welcome to a demo of the pre-built models for Speech to Text provided
+Welcome to a demo of the pre-built models for Speech provided
 through Azure's Cognitive Services. This cloud service accepts audio
 and then converts that into text which it returns locally.
 
@@ -115,7 +116,7 @@ The following file has been found and is assumed to contain
 an Azure Speech Services subscription key and region. We will load 
 the file and use this information.
 
-    /home/kt/.mlhub/azspeech2txt/private.py
+    /home/kt/.mlhub/azspeech/private.txt
 
 Say something...
 
@@ -123,7 +124,7 @@ Say something...
 > text provided through azure's cognitive services. This cloud service 
 > accepts audio and then converts that into text, which it returns locally.
 
-Thank you for exploring the 'azspeech2txt' model.
+Thank you for exploring the 'azspeech model.
 ```
 
 As you can see I read the first paragraph from the screen and the
@@ -136,5 +137,4 @@ Resources
 
 * [Quick Start for
   Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
-  
   
