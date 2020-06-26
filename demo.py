@@ -1,78 +1,45 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
+# -*- coding: utf-8 -*-
+#
+# Time-stamp: <Friday 2020-06-26 21:27:44 AEST Graham Williams>
+#
+# Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
 # Author: Graham.Williams@togaware.com
 #
 # This demo is based on the Azure Cognitive Services Speech to Text Quick Start
 
-print("""==============
-Speech to Text
-==============
+from mlhub.pkg import azkey, mlask, mlcat
 
-Welcome to a demo of the pre-built models for Speech to Text provided
-through Azure's Cognitive Services. This cloud service accepts audio
-and then converts that into text which it returns locally.
+mlcat("Speech Services", """\
+Welcome to a demo of the pre-built models for Speech provided
+through Azure's Cognitive Services. The Speech cloud service 
+supports speech to text and text to speech capabilities.
 """)
 
-# Defaults.
-
-KEY_FILE = "private.py"
-DEFAULT_REGION = "southeastasia"
-
-subscription_key = None
-region = DEFAULT_REGION
+# ----------------------------------------------------------------------
+# Setup
+# ----------------------------------------------------------------------
 
 # Import the required libraries.
 
 import os
 import sys
+
 import azure.cognitiveservices.speech as speechsdk
 
-#from textwrap import fill
+# ----------------------------------------------------------------------
+# Request subscription key and location from user.
+# ----------------------------------------------------------------------
 
-# Prompt the user for the key and region and save into private.py for
-# future runs of the model. The contents of that file is:
-#
-# subscription_key = "a14d...ef24"
-# region = "southeastasia"
+SERVICE   = "Speech"
+KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
 
-if os.path.isfile(KEY_FILE) and os.path.getsize(KEY_FILE) != 0:
-    print("""The following file has been found and is assumed to contain
-an Azure Speech Services subscription key and region. We will load 
-the file and use this information.
+key, location = azkey(KEY_FILE, SERVICE, connect="location")
 
-    """ + os.getcwd() + "/" + KEY_FILE)
-    exec(open(KEY_FILE).read())
-else:
-    print("""An Azure resource is required to access this service (and to run this
-demo). See the README for details of a free subscription. Then you can
-provide the key and the region information here.
-""")
-    sys.stdout.write("Please enter your Speech Services subscription key []: ")
-    subscription_key = input()
+#-----------------------------------------------------------------------
+# Set up a speech recognizer and synthesizer.
+#-----------------------------------------------------------------------
 
-    sys.stdout.write("Please enter your region [southeastasia]: ")
-    region = input()
-    if len(region) == 0: region = DEFAULT_REGION
-
-    if len(subscription_key) > 0:
-        assert subscription_key
-        ofname = open(KEY_FILE, "w")
-        ofname.write("""subscription_key = "{}"
-region = "{}"
-    """.format(subscription_key, region))
-        ofname.close()
-
-        print("""
-I've saved that information into the file:
-
-        """ + os.getcwd() + "/" + KEY_FILE)
-
-print("""
-Say something...
-""")
-
-########################################################################
-#
 # Following is the code that does the actual work, creating an
 # instance of a speech config with the specified subscription key and
 # service region, then creating a recognizer with the given settings,
@@ -83,14 +50,17 @@ Say something...
 # want to run recognition in a non-blocking manner, use
 # recognize_once_async().
 
-speech_config     = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
+speech_config     = speechsdk.SpeechConfig(subscription=key, region=location)
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
-result            = speech_recognizer.recognize_once()
+speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
 
-#
-########################################################################
+#-----------------------------------------------------------------------
+# Trasnscribne some spoken words.
+#-----------------------------------------------------------------------
 
-# Checks result.
+mlask(prompt="Press Enter and then say something", end="\n")
+
+result = speech_recognizer.recognize_once()
 
 if result.reason == speechsdk.ResultReason.RecognizedSpeech:
     print("Recognized: {}".format(result.text))
@@ -101,3 +71,19 @@ elif result.reason == speechsdk.ResultReason.Canceled:
     print("Speech Recognition canceled: {}".format(cancellation_details.reason))
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Error details: {}".format(cancellation_details.error_details))
+
+mlask(begin="\n", end="\n")
+
+#-----------------------------------------------------------------------
+# Request text from console input.
+#-----------------------------------------------------------------------
+
+print("Now type text to be spoken. When Enter is pressed you will hear the result.\n")
+text = input()
+
+# Synthesize the text to speech. When the following line is run expect
+# to hear the synthesized speech.
+
+result = speech_synthesizer.speak_text_async(text).get()
+
+print()
