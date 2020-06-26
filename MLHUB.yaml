@@ -1,22 +1,23 @@
---- # Azure Speech to Text
+--- # Azure Speech
 meta:
-  name         : azspeech2txt
-  title        : Azure Speech to Text cognitive services on the cloud.
+  name         : azspeech
+  title        : Azure Speech cognitive services on the cloud.
   keywords     : azure, speech, natural language understanding, dnn, speech to text
-  version      : 2.2.2
+  version      : 3.0.0
   languages    : py
   license      : mit
   author       : Graham.Williams@microsoft.com
-  url          : https://github.com/gjwgit/azspeech2txt
+  url          : https://github.com/gjwgit/azspeech
 dependencies:
-  pip3: azure-cognitiveservices-speech
+  pip3:
+    - azure-cognitiveservices-speech
   files:
-    - https://mlhub.ai/empty.txt: private.py
+    - https://mlhub.ai/empty.txt: private.txt
     - README.md
     - demo.py
     - listen.py
     - transcribe.py
 commands:
-  demo       : Listen through the microphone to convert speech to text.
+  demo       : Demonstrate speech capabilities.
   listen     : Convert microphone to text as a command line.
   transcribe : Convert an audio file into text.
