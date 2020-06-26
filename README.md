@@ -1,6 +1,10 @@
 Azure Speech Capabilities
 =========================
 
+***Update 27 June 2020:*** The package *azspeech2txt* for the Azure Speech
+to Text service has been renamed *azspeech*, to include text to speech
+capabilities.
+
 This [MLHub](https://mlhub.ai) package provides a quick introduction
 to the pre-built Speech models provided through Azure's Cognitive
 Services. This service can, for example, take an audio signal and
