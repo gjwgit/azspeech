@@ -28,6 +28,16 @@ Visit the github repository for more details:
 The Python code is based on the [Azure Speech Services Quick Start for
 Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
 
+Quick Start
+-----------
+
+```console
+$ ml demo azspeech2txt
+$ ml listen azspeech2txt
+$ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
+$ ml transcribe azspeech2txt harvard.wav
+```
+
 Usage
 -----
 
@@ -59,6 +69,17 @@ for up to 15 seconds and then transcribe it to standard output.
 $ ml listen azspeech2txt
 The machine learning hub is useful for demonstrating capability of 
 models as well as providing command line tools.
+```
+We can pipe the output to other tools, such as to analyse the
+sentiment of the spoken word. In the first instance you might say
+*happy days* and in the second say *sad days*.
+
+```console
+$ ml listen azspeech2txt | ml sentiment aztext
+0.96
+
+$ ml listen azspeech2txt | ml sentiment aztext
+0.07
 ```
 
 *Transcribe*
@@ -110,3 +131,10 @@ Azure Speech to Text service was quite accurate in its
 transcription. If the accuracy for the particular accent is good then
 it is quite suitable, for example, to be used as a dictation tool.
 
+Resources
+---------
+
+* [Quick Start for
+  Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
+  
+  
