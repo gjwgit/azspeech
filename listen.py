@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Saturday 2020-06-27 06:40:14 AEST Graham Williams>
+# Time-stamp: <Saturday 2020-06-27 06:46:35 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
 # Author: Graham.Williams@togaware.com
 #
-# Command line tool to capture and transcribe speech.
+# ml listen azspeech
 
 # ----------------------------------------------------------------------
 # Setup
@@ -38,7 +38,7 @@ speech_config     = speechsdk.SpeechConfig(subscription=key, region=location)
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
 #-----------------------------------------------------------------------
-# Trasnscribne some spoken words.
+# Trasnscribe some spoken words.
 #-----------------------------------------------------------------------
 
 result = speech_recognizer.recognize_once()
