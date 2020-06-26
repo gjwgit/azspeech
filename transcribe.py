@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
-
-# Copyright (c) Microsoft Corporation. All rights reserved.
+#
+# Time-stamp: <Saturday 2020-06-27 06:47:14 AEST Graham Williams>
+#
+# Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
 # Author: Graham.Williams@togaware.com
 #
-# ml transcribe azspeech2txt <path>
+# ml transcribe azspeech <path>
+
+# ----------------------------------------------------------------------
+# Setup
+# ----------------------------------------------------------------------
+
+# Import the required libraries.
 
 import os
 import sys
@@ -13,7 +21,12 @@ import argparse
 
 import azure.cognitiveservices.speech as speechsdk
 
+from mlhub.pkg import azkey
 from mlhub.utils import get_cmd_cwd
+
+#-----------------------------------------------------------------------
+# Process the command line
+#-----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
 
@@ -23,42 +36,20 @@ option_parser.add_argument(
 
 args = option_parser.parse_args()
 
-# Defaults.
+path = os.path.join(get_cmd_cwd(), args.path)
 
-KEY_FILE = "private.py"
-DEFAULT_REGION = "southeastasia"
+#----------------------------------------------------------------------
+# Request subscription key and location from user.
+#----------------------------------------------------------------------
 
-subscription_key = None
-region = DEFAULT_REGION
+SERVICE   = "Speech"
+KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
 
-# Prompt the user for the key and region and save into private.py for
-# future runs of the model. The contents of that file is:
-#
-# subscription_key = "a14d...ef24"
-# region = "southeastasia"
+key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 
-if os.path.isfile(KEY_FILE) and os.path.getsize(KEY_FILE) != 0:
-    exec(open(KEY_FILE).read())
-else:
-    sys.stdout.write("Please enter your Speech Services subscription key []: ")
-    subscription_key = input()
-
-    sys.stdout.write("Please enter your region [southeastasia]: ")
-    region = input()
-    if len(region) == 0: region = DEFAULT_REGION
-
-    if len(subscription_key) > 0:
-        assert subscription_key
-        ofname = open(KEY_FILE, "w")
-        ofname.write("""subscription_key = "{}"
-region = "{}"
-    """.format(subscription_key, region))
-        ofname.close()
-
-        print("""
-I've saved that information into the file:
-
-        """ + os.getcwd() + "/" + KEY_FILE)
+#-----------------------------------------------------------------------
+# Trasnscribe some spoken words from a file.
+#-----------------------------------------------------------------------
 
 # Create a callback to terminate the transcription once the full audio
 # has been transcribed.
@@ -81,12 +72,9 @@ def stop_cb(evt):
 #
 # A recognizer is then created with the given settings.
 
-pth = os.path.join(get_cmd_cwd(), args.path)
+speech_config = speechsdk.SpeechConfig(subscription=key, region=location)
+audio_config  = speechsdk.audio.AudioConfig(use_default_microphone=False, filename=path)
 
-speech_config     = speechsdk.SpeechConfig(subscription=subscription_key,
-                                           region=region)
-audio_config      = speechsdk.audio.AudioConfig(use_default_microphone=False,
-                                                filename=pth)
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config,
                                                audio_config=audio_config)
 
@@ -119,6 +107,5 @@ speech_recognizer.canceled.connect(stop_cb)
 # start_continuous_recognition().
 
 speech_recognizer.start_continuous_recognition()
-while not done:
-    time.sleep(.5)
+while not done: time.sleep(.5)
 
