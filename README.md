@@ -94,8 +94,9 @@ A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```
 
-The audio file comes from Github:
-https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
+*speek*
+
+*synthesize*
 
 *demo*
 
