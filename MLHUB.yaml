@@ -3,7 +3,7 @@ meta:
   name         : azspeech
   title        : Azure Speech cognitive services on the cloud.
   keywords     : azure, speech, natural language understanding, dnn, speech to text
-  version      : 3.1.0
+  version      : 3.1.1
   languages    : py
   license      : mit
   author       : Graham.Williams@microsoft.com
