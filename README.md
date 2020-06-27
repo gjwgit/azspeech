@@ -137,6 +137,9 @@ Resources
 * [Quick Start for
   Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
   
+* [Try Out Text to
+  Speech](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/#features)
+  
 * [Neural voice
   synthesis](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech)
   
