@@ -30,15 +30,12 @@ do not come with the freedom to modify and share.
 Visit the github repository for more details:
 <https://github.com/gjwgit/azspeech>
 
-The Python code is based on the [Azure Speech Services Quick Start for
-Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
-
 Quick Start
 -----------
 
 ```console
-$ ml demo azspeech
 $ ml listen azspeech
+
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
 $ ml transcribe azspeech harvard.wav
 ```
@@ -48,24 +45,21 @@ Usage
 
 - To install mlhub (Ubuntu)
 
-```console
-$ pip3 install mlhub
-```
+		$ pip3 install mlhub
 
 - To install and configure the demo:
 
-```console
-$ ml install   azspeech
-$ ml configure azspeech
-```
+		$ ml install   azspeech
+		$ ml configure azspeech
+
 
 Command Line Tools
 ------------------
 
-In addition to the *demo* presented below, the *azspeech2txt* package
-provides a number of useful command line tools.
+In addition to the *demo* command below, the package provides a number
+of useful command line tools.
 
-*Listen*
+*listen*
 
 The *listen* command will listen for an utterance from the computer microphone
 for up to 15 seconds and then transcribe it to standard output.
@@ -87,12 +81,13 @@ $ ml listen azspeech | ml sentiment aztext
 0.07
 ```
 
-*Transcribe*
+*transcribe*
 
 The *transcribe* command takes an audio file and transcribes it to
 standard output. For large audio files this can take some time.
 
 ```console
+$ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
 $ ml transcribe azspeech harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
@@ -102,8 +97,7 @@ Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 The audio file comes from Github:
 https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
 
-Demonstration
--------------
+*demo*
 
 ```console
 $ ml demo azspeech 
@@ -142,3 +136,15 @@ Resources
 * [Quick Start for
   Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
   
+* [Neural voice
+  synthesis](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech)
+  
+* [Quick Start for
+  Text2Speech](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstarts/text-to-speech-audio-file?tabs=ubuntu%2Cwindowsinstall&pivots=programming-language-python)
+  
+* [Quick Start Text2Speech Source
+  Code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/text-to-speech/quickstart.py)
+  
+* The Python code is based on the [Azure Speech Services Quick Start for
+Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
+
