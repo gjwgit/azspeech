@@ -24,4 +24,4 @@ commands:
   listen     : Convert microphone to text as a command line.
   transcribe : Convert supplied audio file into text.
   speek      : Convert microphone to text as a command line.
-  synthesize : Synthesize text from a supplied file.       
+  synthesize : Synthesize text from a supplied file.
