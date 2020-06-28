@@ -24,7 +24,8 @@ availability and do not come with the freedom to modify and share.
 **Warning** This cloud based service sends all of your text (for
 synthesis) and audio (for transcription) to the cloud.
 
-MLHub source code is available from https://github.com/gjwgit/azspeech
+The azspeech source code is available from
+https://github.com/gjwgit/azspeech
 
 ## Quick Start
 
@@ -126,33 +127,38 @@ $ ml transcribe azspeech | ml translate aztranslate --to=fr | cut -d',' -f4- | m
 ```console
 $ ml demo azspeech 
 
-=====================
-Azure Speech Services
-=====================
+===============
+Speech Services
+===============
 
-Welcome to a demo of the pre-built models for Speech provided
-through Azure's Cognitive Services. This cloud service accepts audio
-and then converts that into text which it returns locally.
+Welcome to a demo of the pre-built models for Speech provided through
+Azure's Cognitive Services. The Speech cloud service  supports speech
+to text and text to speech capabilities.
 
-The following file has been found and is assumed to contain
-an Azure Speech Services subscription key and region. We will load 
+The following file has been found and is assumed to contain an Azure 
+subscription key and location for Speech. We will load 
 the file and use this information.
 
-    /home/kt/.mlhub/azspeech/private.txt
+    /home/gjw/.mlhub/azspeech/private.txt
 
-Say something...
+Press Enter and then say something: 
 
-> Recognized: Welcome to a demo of the prebuilt models for speech to
-> text provided through azure's cognitive services. This cloud service 
-> accepts audio and then converts that into text, which it returns locally.
+> Recognized: Welcome to a demo of the prebuilt models speech provided 
+> through Azure as cognitive services. The speech cloud service provides
+> speech to text and text to speech capabilities.
 
-Thank you for exploring the 'azspeech model.
+Press Enter to continue: 
+
+Now type text to be spoken. When Enter is pressed you will hear the result.
+
+> Welcome to a demo of the prebuilt models for speech.
 ```
 
-As you can see I read the first paragraph from the screen and the
+As you can see the first paragraph from the screen was read and the
 Azure Speech to Text service was quite accurate in its
-transcription. If the accuracy for the particular accent is good then
-it is quite suitable, for example, to be used as a dictation tool.
+transcription. For synthesis the same text was used and could be heard
+through the system speakers.
+
 
 ## Resources
 
