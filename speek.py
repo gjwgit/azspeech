@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Sunday 2020-06-28 09:46:39 AEST Graham Williams>
+# Time-stamp: <Sunday 2020-06-28 12:32:38 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -15,6 +15,7 @@
 # Import the required libraries.
 
 import os
+import re
 import sys
 import argparse
 
@@ -66,9 +67,19 @@ key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 text = ""
 if args.file:
     text = open(os.path.join(get_cmd_cwd(), args.file), "r").read()
-    text = " ".join(text.splitlines())
 elif args.sentence:
     text = " ".join(args.sentence)
+
+# Split the text into a list of sentences. Each sentence is sent off
+# for synthesis. This avoids a very long text going off to the
+# synthesizer (which seems to have a limit of some 640 characters) and
+# is a natural break point anyhow.
+
+text = " ".join(text.splitlines())
+text = " ".join(text.splitlines())
+text = text.replace("\. ", "\n")
+text = re.sub("\. ", "\n", text)
+text = text.splitlines()
 
 #-----------------------------------------------------------------------
 # Set up a speech synthesizer using the default speaker as audio output.
@@ -90,7 +101,8 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
 # ----------------------------------------------------------------------
 
 if len(text):
-    result = speech_synthesizer.speak_text_async(text).get()
+    for sentence in text:
+        result = speech_synthesizer.speak_text_async(sentence).get()
 else:
     if sys.stdin.isatty():
         try:
