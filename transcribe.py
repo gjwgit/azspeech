@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Sunday 2020-06-28 11:55:44 AEST Graham Williams>
+# Time-stamp: <Monday 2020-06-29 07:54:52 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -31,7 +31,7 @@ from mlhub.utils import get_cmd_cwd
 option_parser = argparse.ArgumentParser(add_help=False)
 
 option_parser.add_argument(
-    '--file',
+    '--file', "-f",
     help='wav input file')
 
 args = option_parser.parse_args()
