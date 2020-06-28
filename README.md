@@ -32,10 +32,14 @@ Visit the github repository for more details:
 ## Quick Start
 
 ```console
-$ ml transcribe azspeech
-
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
+
+$ ml transcribe azspeech
 $ ml transcribe azspeech --file=harvard.wav
+
+$ ml synthesize azspeech Welcome my friend, welcome to the machine.
+$ ml synthesize azspeech --file=ai.txt
+$
 ```
 
 ## Usage
@@ -91,9 +95,18 @@ A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```
 
-### *speek*
-
 ### *synthesize*
+
+```console
+$ ml synthesize azspeech Welcome my son, welcome to the machine.
+$ ml synthesize azspeech --lang=fr-FR It's alright, we know where you've been.
+$ ml synthesize azspeech --voice=en-AU-NatashaNeural You brought a guitar to punish your ma.
+
+$ ml synthesize azspeech --file=short.txt
+$ ml synthesize azspeech --lang=fr-FR --file=short.txt
+$ ml synthesize azspeech --voice=en-AU-NatashaNeural --file=short.txt
+$ ml synthesize azspeech --voice=fr-FR-DeniseNeural --file=short.txt
+```
 
 ## Demonstration
 
