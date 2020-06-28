@@ -182,3 +182,4 @@ the same text was used and could be heard through the system speakers.
 * The Python code is based on the [Azure Speech Services Quick Start for
 Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
 
+![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png) [This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
