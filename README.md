@@ -154,10 +154,9 @@ Now type text to be spoken. When Enter is pressed you will hear the result.
 > Welcome to a demo of the prebuilt models for speech.
 ```
 
-As you can see the first paragraph from the screen was read and the
-Azure Speech to Text service was quite accurate in its
-transcription. For synthesis the same text was used and could be heard
-through the system speakers.
+The first paragraph from the screen was read and the Azure Speech to
+Text service was mostly accurate in its transcription. For synthesis
+the same text was used and could be heard through the system speakers.
 
 
 ## Resources
