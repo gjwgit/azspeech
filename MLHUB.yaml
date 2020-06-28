@@ -2,7 +2,7 @@
 meta:
   name         : azspeech
   title        : Azure Speech cognitive services on the cloud.
-  keywords     : azure, speech, natural language understanding, dnn, speech to text
+  keywords     : azure, speech synthesis, natural language processing, deep neural networks, speech to text, text to speech, transcription
   version      : 3.2.0
   languages    : py
   license      : mit
@@ -16,8 +16,8 @@ dependencies:
     - README.md
     - demo.py
     - transcribe.py
-    - speek.py
+    - synthesize.py
 commands:
   demo       : Demonstrate speech capabilities.
-  transcribe : Transcribe from microphone or wav file. Supports --file.
-  speek      : Speek text from command line. Supports --file, --lang, and --voice.
+  transcribe : Generate text from microphone or wav file. Supports --file.
+  synthesize : Speek text from command line. Supports --file, --lang, and --voice.
