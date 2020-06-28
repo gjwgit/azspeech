@@ -39,7 +39,6 @@ $ ml transcribe azspeech --file=harvard.wav
 
 $ ml synthesize azspeech Welcome my friend, welcome to the machine.
 $ ml synthesize azspeech --file=ai.txt
-$
 ```
 
 ## Usage
@@ -106,6 +105,11 @@ $ ml synthesize azspeech --file=short.txt
 $ ml synthesize azspeech --lang=fr-FR --file=short.txt
 $ ml synthesize azspeech --voice=en-AU-NatashaNeural --file=short.txt
 $ ml synthesize azspeech --voice=fr-FR-DeniseNeural --file=short.txt
+```
+
+### Speaking French
+```console
+$ ml transcribe azspeech | ml translate aztranslate --to=fr | cut -d',' -f4- | ml synthesize azspeech --voice=fr-FR-HortenseRUS
 ```
 
 ## Demonstration
