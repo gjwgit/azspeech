@@ -79,12 +79,13 @@ $ ml transcribe azspeech | ml sentiment aztext
 
 ### *transcribe* from --file
 
-The *transcribe* command takes an audio file and transcribes it to
-standard output. For large audio files this can take some time.
+The *transcribe* command can take an audio (wav) file and transcribe
+it to standard output. For large audio files this will take extra
+time.
 
 ```console
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
-$ ml transcribe azspeech harvard.wav
+$ ml transcribe azspeech --file=harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
@@ -127,8 +128,7 @@ Azure Speech to Text service was quite accurate in its
 transcription. If the accuracy for the particular accent is good then
 it is quite suitable, for example, to be used as a dictation tool.
 
-Resources
----------
+## Resources
 
 * [Quick Start for
   Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
