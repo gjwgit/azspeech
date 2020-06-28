@@ -161,23 +161,18 @@ the same text was used and could be heard through the system speakers.
 
 ## Resources
 
+* [Speech Services
+  Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)
+
 * [Supported
   Languages](https://docs.microsoft.com/en-gb/azure/cognitive-services/speech-service/language-support)
 
-* [Quick Start for
+* [Python code for Speech Recognizer:
   Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
   
-* [Quick Start for
-  Text2Speech](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstarts/text-to-speech-audio-file?tabs=ubuntu%2Cwindowsinstall&pivots=programming-language-python)
+* [Python code for Speech Synthesizer:
+  Text2Speech](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/text-to-speech)
   
-* [Quick Start Text2Speech Source
-  Code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/text-to-speech/quickstart.py)
-  
-* [Try Out Text to
-  Speech Online](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/#features)
-  
-* [Neural Voice
-  Synthesis](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech)
-  
+ 
 ![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)  
 [This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
