@@ -4,41 +4,38 @@
 to Text service has been renamed *azspeech*, to include text to speech
 capabilities.
 
-This [MLHub](https://mlhub.ai) package provides a quick introduction
-to the pre-built Speech models provided through Azure's Cognitive
-Services. This service can, for example, take an audio signal and
-transcribes it to return the text. It also supports speech synthesis.
+This [MLHub](https://mlhub.ai) package provides a demonstration and
+command line tools built from the pre-built Speech models provided
+through Azure's Cognitive Services. This service can, for example,
+take an audio signal and transcribe it to return the text. It also
+supports speech synthesis, taking text and synthesising a voice to
+read the text with multiple voices and languages available.
 
-In addition to the demonstration this package provides a collection of
-commands that turn the service into a useful command line tool for
-transcribing from the microphone or from an audio file, and
-synthesising speech.
+An Azure subscription is required, allowing up to 5,000 free
+transactions per month (https://azure.microsoft.com/free/). Through
+the [Azure Portal](https://ms.portal.azure.com) create a Speech
+resource and use the resulting key and endpoint from the portal for
+the *demo*.
 
-A free Azure subscription allowing up to 5,000 transactions per month
-is available from https://azure.microsoft.com/free/. After subscribing
-visit https://ms.portal.azure.com and Create a resource under AI and
-Machine Learning called Speech Services. Once created you can access
-the web API subscription key and endpoint from the portal. This will
-be prompted for in the demo.
+**Warning** Unlike the MLHub models in general these Azure models use
+*closed source services* which have no guarantee of ongoing
+availability and do not come with the freedom to modify and share.
 
-This package is part of the Azure on MLHub suite. Please note that
-these Azure models, unlike the MLHub models in general, use *closed
-source services* which have no guarantee of ongoing availability and
-do not come with the freedom to modify and share.
+**Warning** This cloud based service sends all of your text (for
+synthesis) and audio (for transcription) to the cloud.
 
-Visit the github repository for more details:
-<https://github.com/gjwgit/azspeech>
+MLHub source code is available from https://github.com/gjwgit/azspeech
 
 ## Quick Start
 
 ```console
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
 
-$ ml transcribe azspeech
-$ ml transcribe azspeech --file=harvard.wav
-
 $ ml synthesize azspeech Welcome my friend, welcome to the machine.
 $ ml synthesize azspeech --file=ai.txt
+
+$ ml transcribe azspeech
+$ ml transcribe azspeech --file=harvard.wav
 ```
 
 ## Usage
@@ -51,6 +48,11 @@ $ ml synthesize azspeech --file=ai.txt
 
 		$ ml install   azspeech
 		$ ml configure azspeech
+		
+- Command line tools:
+
+		$ ml synthesize azspeech [(--file|-f) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence]
+		$ ml transcribe azspeech [(--file|-f) <wav file>]
 
 
 ## Command Line Tools
@@ -58,10 +60,29 @@ $ ml synthesize azspeech --file=ai.txt
 In addition to the *demo* command below, the package provides a number
 of useful command line tools.
 
+### *synthesize* to speaker
+
+The *synthesize* command will generate spoken word audio from supplied
+text and play the audio on the system's default audio output.
+
+```console
+$ ml synthesize azspeech Welcome my son, welcome to the machine.
+$ ml synthesize azspeech --lang=fr-FR It's alright, we know where you've been.
+$ ml synthesize azspeech --voice=en-AU-NatashaNeural You brought a guitar to punish your ma.
+
+$ echo It's alright, we told you what to dream | ml synthesize azspeech
+
+$ ml synthesize azspeech --file=short.txt
+$ ml synthesize azspeech --lang=de-DE --file=short.txt
+$ ml synthesize azspeech --voice=fr-FR-DeniseNeural --file=short.txt
+```
+
 ### *transcribe* from microphone
 
 The *transcribe* command will listen for an utterance from the computer microphone
-for up to 15 seconds and then transcribe it to standard output.
+for up to 15 seconds and then transcribe it to standard output. After
+issuing the command it waits for you to type input and after hitting
+the Engter key it sends that text off to be transcribed.
 
 ```console
 $ ml transcribe azspeech
@@ -92,19 +113,6 @@ $ ml transcribe azspeech --file=harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
-```
-
-### *synthesize*
-
-```console
-$ ml synthesize azspeech Welcome my son, welcome to the machine.
-$ ml synthesize azspeech --lang=fr-FR It's alright, we know where you've been.
-$ ml synthesize azspeech --voice=en-AU-NatashaNeural You brought a guitar to punish your ma.
-
-$ ml synthesize azspeech --file=short.txt
-$ ml synthesize azspeech --lang=fr-FR --file=short.txt
-$ ml synthesize azspeech --voice=en-AU-NatashaNeural --file=short.txt
-$ ml synthesize azspeech --voice=fr-FR-DeniseNeural --file=short.txt
 ```
 
 ### Speaking French
