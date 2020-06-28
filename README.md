@@ -1,5 +1,4 @@
-Azure Speech Capabilities
-=========================
+# Azure Speech Capabilities
 
 ***Update 27 June 2020:*** The package *azspeech2txt* for the Azure Speech
 to Text service has been renamed *azspeech*, to include text to speech
@@ -30,18 +29,16 @@ do not come with the freedom to modify and share.
 Visit the github repository for more details:
 <https://github.com/gjwgit/azspeech>
 
-Quick Start
------------
+## Quick Start
 
 ```console
-$ ml listen azspeech
+$ ml transcribe azspeech
 
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
-$ ml transcribe azspeech harvard.wav
+$ ml transcribe azspeech --file=harvard.wav
 ```
 
-Usage
------
+## Usage
 
 - To install mlhub (Ubuntu)
 
@@ -53,19 +50,18 @@ Usage
 		$ ml configure azspeech
 
 
-Command Line Tools
-------------------
+## Command Line Tools
 
 In addition to the *demo* command below, the package provides a number
 of useful command line tools.
 
-*listen*
+### *transcribe* from microphone
 
-The *listen* command will listen for an utterance from the computer microphone
+The *transcribe* command will listen for an utterance from the computer microphone
 for up to 15 seconds and then transcribe it to standard output.
 
 ```console
-$ ml listen azspeech
+$ ml transcribe azspeech
 The machine learning hub is useful for demonstrating capability of 
 models as well as providing command line tools.
 ```
@@ -74,14 +70,14 @@ sentiment of the spoken word. In the first instance you might say
 *happy days* and in the second say *sad days*.
 
 ```console
-$ ml listen azspeech | ml sentiment aztext
+$ ml transcribe azspeech | ml sentiment aztext
 0.96
 
-$ ml listen azspeech | ml sentiment aztext
+$ ml transcribe azspeech | ml sentiment aztext
 0.07
 ```
 
-*transcribe*
+### *transcribe* from --file
 
 The *transcribe* command takes an audio file and transcribes it to
 standard output. For large audio files this can take some time.
@@ -94,11 +90,11 @@ A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```
 
-*speek*
+### *speek*
 
-*synthesize*
+### *synthesize*
 
-*demo*
+## Demonstration
 
 ```console
 $ ml demo azspeech 
