@@ -44,10 +44,11 @@ $ ml transcribe azspeech --file=harvard.wav
 
 		$ pip3 install mlhub
 
-- To install and configure the demo:
+- To install, configure, and run the demo:
 
 		$ ml install   azspeech
 		$ ml configure azspeech
+		$ ml demo      azspeech
 		
 - Command line tools:
 
