@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Sunday 2020-06-28 12:32:38 AEST Graham Williams>
+# Time-stamp: <Sunday 2020-06-28 15:06:46 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -107,6 +107,7 @@ else:
     if sys.stdin.isatty():
         try:
             for line in sys.stdin:
+                if line == "\n": break
                 result = speech_synthesizer.speak_text_async(line).get()
         except KeyboardInterrupt:
             pass
