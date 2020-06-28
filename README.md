@@ -116,7 +116,7 @@ A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```
 
-### Speaking French
+### A Pipeline for Speaking French
 ```console
 $ ml transcribe azspeech | ml translate aztranslate --to=fr | cut -d',' -f4- | ml synthesize azspeech --voice=fr-FR-HortenseRUS
 ```
@@ -156,20 +156,23 @@ it is quite suitable, for example, to be used as a dictation tool.
 
 ## Resources
 
+* [Supported
+  Languages](https://docs.microsoft.com/en-gb/azure/cognitive-services/speech-service/language-support)
+
 * [Quick Start for
   Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
-  
-* [Try Out Text to
-  Speech](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/#features)
-  
-* [Neural voice
-  synthesis](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech)
   
 * [Quick Start for
   Text2Speech](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstarts/text-to-speech-audio-file?tabs=ubuntu%2Cwindowsinstall&pivots=programming-language-python)
   
 * [Quick Start Text2Speech Source
   Code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/text-to-speech/quickstart.py)
+  
+* [Try Out Text to
+  Speech Online](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/#features)
+  
+* [Neural Voice
+  Synthesis](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech)
   
 * The Python code is based on the [Azure Speech Services Quick Start for
 Python](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
