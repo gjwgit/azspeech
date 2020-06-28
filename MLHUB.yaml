@@ -15,11 +15,9 @@ dependencies:
     - https://mlhub.ai/empty.txt: private.txt
     - README.md
     - demo.py
-    - listen.py
     - transcribe.py
     - speek.py
 commands:
   demo       : Demonstrate speech capabilities.
-  listen     : Convert microphone to text as a command line.
-  transcribe : Convert supplied audio file into text.
-  speek      : Use microphone for text as a command line.
+  transcribe : Transcribe from microphone or wav file. Supports --file.
+  speek      : Speek text from command line. Supports --file, --lang, and --voice.
