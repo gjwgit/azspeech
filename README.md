@@ -1,9 +1,5 @@
 # Azure Speech Capabilities
 
-***Update 27 June 2020:*** The package *azspeech2txt* for the Azure Speech
-to Text service has been renamed *azspeech*, to include text to speech
-capabilities.
-
 This [MLHub](https://mlhub.ai) package provides a demonstration and
 command line tools built from the pre-built Speech models provided
 through Azure's Cognitive Services. This service can, for example,
@@ -25,7 +21,7 @@ availability and do not come with the freedom to modify and share.
 synthesis) and audio (for transcription) to the cloud.
 
 The azspeech source code is available from
-https://github.com/gjwgit/azspeech
+<https://github.com/gjwgit/azspeech>.
 
 ## Quick Start
 
@@ -41,14 +37,17 @@ $ ml transcribe azspeech --file=harvard.wav
 
 ## Usage
 
-- To install mlhub (Ubuntu)
+- To install mlhub (Ubuntu):
 
 		$ pip3 install mlhub
+		$ ml configure
 
 - To install, configure, and run the demo:
 
 		$ ml install   azspeech
 		$ ml configure azspeech
+		$ ml readme    azspeech
+		$ ml commands  axspeech
 		$ ml demo      azspeech
 		
 - Command line tools:
@@ -160,6 +159,8 @@ the same text was used and could be heard through the system speakers.
 
 
 ## Resources
+
+* [MLHub](https://mlhub.ai)
 
 * [Speech Services
   Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)
