@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Friday 2020-06-26 21:27:44 AEST Graham Williams>
+# Time-stamp: <Tuesday 2020-07-07 16:28:31 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -58,7 +58,7 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
 # Trasnscribne some spoken words.
 #-----------------------------------------------------------------------
 
-mlask(prompt="Press Enter and then say something", end="\n")
+mlask(end=True, prompt="Press Enter and then say something")
 
 result = speech_recognizer.recognize_once()
 
@@ -72,7 +72,7 @@ elif result.reason == speechsdk.ResultReason.Canceled:
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Error details: {}".format(cancellation_details.error_details))
 
-mlask(begin="\n", end="\n")
+mlask(True, True)
 
 #-----------------------------------------------------------------------
 # Request text from console input.
