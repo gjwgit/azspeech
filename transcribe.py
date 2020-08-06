@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Monday 2020-06-29 07:54:52 AEST Graham Williams>
+# Time-stamp: <Thursday 2020-08-06 12:05:53 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
-# Licensed under the MIT License.
+# Licensed under GPLv3.
 # Author: Graham.Williams@togaware.com
 #
-# ml listen azspeech
+# ml transcribe azspeech
 
 # ----------------------------------------------------------------------
 # Setup
@@ -29,6 +29,9 @@ from mlhub.utils import get_cmd_cwd
 #-----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
+
+# Currently only wav supported here. For mp3 some extra configuration
+# required. See 
 
 option_parser.add_argument(
     '--file', "-f",
