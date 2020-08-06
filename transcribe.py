@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Thursday 2020-08-06 12:09:12 AEST Graham Williams>
+# Time-stamp: <Thursday 2020-08-06 14:22:36 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under GPLv3.
@@ -18,6 +18,7 @@ import os
 import sys
 import time
 import argparse
+import textwrap
 
 import azure.cognitiveservices.speech as speechsdk
 
@@ -102,7 +103,7 @@ if args.file:
     # This callback provides the actual transcription.
 
     speech_recognizer.recognized.connect(lambda evt:
-                                         print(f'{evt.result.text}\n'))
+                                         print(f'{textwrap.fill(evt.result.text)}\n'))
 
     # Stop continuous recognition on either session stopped or canceled
     # events.
