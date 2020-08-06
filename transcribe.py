@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Thursday 2020-08-06 12:05:53 AEST Graham Williams>
+# Time-stamp: <Thursday 2020-08-06 12:09:12 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under GPLv3.
@@ -102,7 +102,7 @@ if args.file:
     # This callback provides the actual transcription.
 
     speech_recognizer.recognized.connect(lambda evt:
-                                         print(f'{evt.result.text}'))
+                                         print(f'{evt.result.text}\n'))
 
     # Stop continuous recognition on either session stopped or canceled
     # events.
