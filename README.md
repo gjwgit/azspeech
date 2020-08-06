@@ -106,7 +106,8 @@ $ ml transcribe azspeech | ml sentiment aztext
 
 The *transcribe* command can take an audio (wav) file and transcribe
 it to standard output. For large audio files this will take extra
-time.
+time. Currently only wav files are supported through the command line
+(though the service also supports mp3, ogg, and flac).
 
 ```console
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
