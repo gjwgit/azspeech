@@ -17,7 +17,9 @@ dependencies:
     - demo.py
     - transcribe.py
     - synthesize.py
+    - translate.py
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.
   synthesize : Speek text from command line. Supports --file, --lang, --voice and --output.
+  translate  : Translate speech from microphone. Supports --original, --target and --output.
