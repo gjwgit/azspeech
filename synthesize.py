@@ -95,12 +95,12 @@ text = text.splitlines()
 
 speech_config = speechsdk.SpeechConfig(subscription=key, region=location)
 
-audio_config = AudioOutputConfig(filename=args.output)
 
 if args.lang: speech_config.speech_synthesis_language = args.lang
 if args.voice: speech_config.speech_synthesis_voice_name = args.voice
 
 if args.output:
+    audio_config = AudioOutputConfig(filename=args.output)
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 else:
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
