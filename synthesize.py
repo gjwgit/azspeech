@@ -20,6 +20,7 @@ import sys
 import argparse
 
 import azure.cognitiveservices.speech as speechsdk
+from azure.cognitiveservices.speech.audio import AudioOutputConfig
 
 from mlhub.pkg import azkey
 from mlhub.utils import get_cmd_cwd
@@ -41,11 +42,15 @@ option_parser.add_argument(
 
 option_parser.add_argument(
     '--lang', "-l",
-    help=f'spoken language)')
+    help=f'spoken language')
 
 option_parser.add_argument(
     '--voice', "-v",
     help=f'spoken voice')
+
+option_parser.add_argument(
+    '--output', "-o",
+    help=f'path to an audio file to save. The file type should be wav')
 
 args = option_parser.parse_args()
 
@@ -90,10 +95,15 @@ text = text.splitlines()
 
 speech_config = speechsdk.SpeechConfig(subscription=key, region=location)
 
+audio_config = AudioOutputConfig(filename=args.output)
+
 if args.lang: speech_config.speech_synthesis_language = args.lang
 if args.voice: speech_config.speech_synthesis_voice_name = args.voice
 
-speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
+if args.output:
+    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+else:
+    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
 
 # ----------------------------------------------------------------------
 # Synthesize the text to speech. When the following line is run expect

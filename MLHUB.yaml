@@ -20,4 +20,4 @@ dependencies:
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.
-  synthesize : Speek text from command line. Supports --file, --lang, and --voice.
+  synthesize : Speek text from command line. Supports --file, --lang, --voice and --output.
