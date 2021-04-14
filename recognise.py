@@ -1,12 +1,12 @@
 import os
 import argparse
 import requests
-
+import sys
 from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd
-
+from mlhub.utils import get_cmd_cwd, is_url
+import tempfile
 import wave
-
+from urllib.request import urlretrieve
 # -----------------------------------------------------------------------
 # Process the command line.
 # -----------------------------------------------------------------------
@@ -64,12 +64,38 @@ enroll_header = {
 
 # Add three sample audios
 for i in range(0, 3):
-    path = os.path.join(get_cmd_cwd(), args.file[i])
-    w = wave.open(path, "rb")
-    # Convert audio file into binary format
-    binary_data = w.readframes(w.getnframes())
-    w.close()
-    result = requests.post(enroll_url, data=binary_data, headers=enroll_header)
+
+    # if is_url(args.file[i]):
+    #     response = requests.get(args.file[i])
+    #     if response.status_code != 200:
+    #         print(f"The URL does not appear to exist. Please check.\n{args.file[i]}")
+    #         sys.exit()
+    #     else:
+    #         if args.file[i].find('/'):
+    #             audio_name = args.file[i].rsplit('/', 1)[1]
+    #         else:
+    #             audio_name = "download.wav"
+    #
+    #         headers = {'User-Agent': 'Mozilla/5.0'}
+    #         with tempfile.TemporaryDirectory(dir="/tmp") as tmpdirname:
+    #             path = os.path.join(tmpdirname, audio_name)
+    #             urlretrieve(args.file[i], path)
+    #             # open(path, 'wb').write(r.content)
+    #             # print(path)
+    #             w = wave.open(path, "r")
+    #             # Convert audio file into binary format
+    #             binary_data = w.readframes(w.getnframes())
+    #             w.close()
+    #             result = requests.post(enroll_url, data=binary_data, headers=enroll_header)
+    #             print(result.json())
+    #
+    # else:
+        path = os.path.join(get_cmd_cwd(), args.file[i])
+        w = wave.open(path, "rb")
+        # Convert audio file into binary format
+        binary_data = w.readframes(w.getnframes())
+        w.close()
+        result = requests.post(enroll_url, data=binary_data, headers=enroll_header)
 
 # -----------------------------------------------------------------------
 # Verify the audio
