@@ -1,7 +1,3 @@
-# ----------------------------------------------------------------------
-# Setup
-# ----------------------------------------------------------------------
-
 # Import the required libraries.
 
 import os
@@ -49,10 +45,13 @@ speech_key, service_region = azkey(KEY_FILE, SERVICE, connect="location", verbos
 
 # ----------------------------------------------------------------------
 # Get language code. "Original": is from Loale in Speech-to-text table.
+# (https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-to-text)
 # "target": is from Language Code in Text languages table.
+# (https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-translation)
 # Make sure the text language in Text Language table exists in Neural voices
 # table.
 # ----------------------------------------------------------------------
+
 language_to_voice_map = {}
 dataframe_speech = pandas.read_csv("text-to-speech.txt",delimiter="\t")
 
