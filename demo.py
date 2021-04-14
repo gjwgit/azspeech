@@ -24,21 +24,21 @@ supports speech to text and text to speech capabilities.
 
 import os
 import sys
-
+from translate import translate_speech_to_text
 import azure.cognitiveservices.speech as speechsdk
 
 # ----------------------------------------------------------------------
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE   = "Speech"
-KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
+SERVICE = "Speech"
+KEY_FILE = os.path.join(os.getcwd(), "private.txt")
 
 key, location = azkey(KEY_FILE, SERVICE, connect="location")
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Set up a speech recognizer and synthesizer.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 # Following is the code that does the actual work, creating an
 # instance of a speech config with the specified subscription key and
@@ -50,13 +50,18 @@ key, location = azkey(KEY_FILE, SERVICE, connect="location")
 # want to run recognition in a non-blocking manner, use
 # recognize_once_async().
 
-speech_config     = speechsdk.SpeechConfig(subscription=key, region=location)
+speech_config = speechsdk.SpeechConfig(subscription=key, region=location)
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
 
-#-----------------------------------------------------------------------
-# Trasnscribne some spoken words.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
+# Transcribe some spoken words.
+# -----------------------------------------------------------------------
+
+mlask(end="\n")
+
+mlcat("Speech to Text", """\
+Now say something, it will transcribe into text. """)
 
 mlask(end=True, prompt="Press Enter and then say something")
 
@@ -72,13 +77,16 @@ elif result.reason == speechsdk.ResultReason.Canceled:
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Error details: {}".format(cancellation_details.error_details))
 
-mlask(True, True)
+mlask(end="\n")
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Request text from console input.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
-print("Now type text to be spoken. When Enter is pressed you will hear the result.\n")
+mlcat("Text to Speech", """\
+Now type text to be spoken. When Enter is pressed you will hear the result.
+""")
+
 text = input()
 
 # Synthesize the text to speech. When the following line is run expect
@@ -86,4 +94,33 @@ text = input()
 
 result = speech_synthesizer.speak_text_async(text).get()
 
-print()
+# -----------------------------------------------------------------------
+# Translate language to other language
+# -----------------------------------------------------------------------
+
+mlask(begin="\n")
+
+mlcat("Speech Translation", """\
+This part is to translate English to other language. Now please speak English. 
+This speech service will translate it to French.
+""")
+
+mlask()
+translate_speech_to_text("en-US", "fr")
+
+# -----------------------------------------------------------------------
+# Confirming that the speaker matches a known, or enrolled voice
+# -----------------------------------------------------------------------
+
+mlask(begin="\n")
+mlcat("Speaker Recognition", """\
+This part is the act of confirming that a speaker matches a enrolled voice. 
+Now you will hear four audios. The first three will be the sample audios, 
+and the fourth one will be the audio that needs to compare against them.
+""")
+
+
+
+
+
+
