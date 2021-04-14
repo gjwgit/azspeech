@@ -70,11 +70,8 @@ for index, row in dataframe_speech.iterrows():
 # Translate the speech to another language speech
 # ----------------------------------------------------------------------
 
-from_language = args.original
-to_language = args.target
 
-
-def translate_speech_to_text():
+def translate_speech_to_text(from_language, to_language):
     translation_config = speechsdk.translation.SpeechTranslationConfig(
         subscription=speech_key, region=service_region)
 
@@ -86,10 +83,10 @@ def translate_speech_to_text():
 
     print('Say something...')
     result = recognizer.recognize_once()
-    synthesize_translations(result=result)
+    synthesize_translations(from_language, to_language, result=result)
 
 
-def synthesize_translations(result):
+def synthesize_translations(from_language, to_language, result):
     print(f'Recognized: "{result.text}"')
     translation = result.translations[to_language]
     print(f'Translated into "{to_language}": {translation}')
@@ -106,4 +103,10 @@ def synthesize_translations(result):
     speech_synthesizer.speak_text_async(translation).get()
 
 
-translate_speech_to_text()
+from_language = args.original
+to_language = args.target
+
+if __name__ == "__main__":
+    from_language = args.original
+    to_language = args.target
+    translate_speech_to_text(from_language, to_language)
