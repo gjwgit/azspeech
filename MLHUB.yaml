@@ -24,9 +24,10 @@ dependencies:
     - recognise.py
     - intent.py
     - text-to-speech.txt
-    - audio.wav
-    - audio1.wav
-    - audio2.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.

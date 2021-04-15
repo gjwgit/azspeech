@@ -124,10 +124,10 @@ sample audios, and the fourth one will be the audio that needs to
 compare against them.
 """)
 
-first = os.path.join(os.getcwd(), "audio.wav")
-second = os.path.join(os.getcwd(), "audio1.wav")
-third = os.path.join(os.getcwd(), "audio2.wav")
-
+first = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
+second = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
+third = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
+fourth = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
 # Play the first audio
 mlask(end="\n")
 mlcat("", """
@@ -154,7 +154,7 @@ mlask(end="\n")
 mlcat("", """
 The fourth audio that needs to verify...
 """)
-os.system(f'aplay {third} >/dev/null 2>&1')
+os.system(f'aplay {fourth} >/dev/null 2>&1')
 mlask(end="\n")
 
 
@@ -165,7 +165,7 @@ unique voice characteristics.
 """)
 
 mlask(end="\n")
-recognise([first, second, third], third)
+recognise([first, second, third], fourth)
 
 # -----------------------------------------------------------------------
 # Intent Recognition
