@@ -13,8 +13,10 @@ from mlhub.pkg import azkey, mlask, mlcat
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
 through Azure's Cognitive Services. The Speech cloud service 
-supports speech to text, text to speech, speech translation and 
-Speaker Recognition capabilities.
+supports speech to text, text to speech, speech translation, 
+Speaker Recognition and Intent Recognition capabilities. We recommend
+choosing westus in Location because Speaker Recognition can only work 
+under this location. 
 """)
 
 # ----------------------------------------------------------------------
@@ -79,7 +81,7 @@ elif result.reason == speechsdk.ResultReason.Canceled:
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Error details: {}".format(cancellation_details.error_details))
 
-mlask(end="\n")
+mlask(begin="\n", end="\n")
 
 # -----------------------------------------------------------------------
 # Request text from console input.
@@ -100,21 +102,21 @@ result = speech_synthesizer.speak_text_async(text).get()
 # Translate language to other language
 # -----------------------------------------------------------------------
 
-mlask(end ="\n")
+mlask(begin="\n", end ="\n")
 
 mlcat("Speech Translation", """\
 This part is to translate English to other language. Now please speak
 English. This speech service will translate it to French.
 """)
 
-mlask()
+mlask(end="\n")
 translate_speech_to_text("en-US", "fr")
 
 # -----------------------------------------------------------------------
 # Confirming that the speaker matches a known, or enrolled voice
 # -----------------------------------------------------------------------
 
-mlask(begin="\n")
+mlask(begin="\n", end="\n")
 mlcat("Speaker Recognition", """\
 This part is the act of confirming that a speaker matches a enrolled
 voice. Now you will hear four audios. The first three will be the 
@@ -162,13 +164,13 @@ system, and use these samples to verify the fourth audio by its
 unique voice characteristics. 
 """)
 
-mlask()
+mlask(end="\n")
 recognise([first, second, third], third)
 
 # -----------------------------------------------------------------------
 # Intent Recognition
 # -----------------------------------------------------------------------
-mlask(end="\n")
+mlask(begin="\n", end="\n")
 url = "https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-get-started-create-app"
 mlcat("Intent Recognition", """\
 This part is Intent Recognition. Intent is something that users want 
