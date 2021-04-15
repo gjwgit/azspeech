@@ -127,21 +127,31 @@ third = os.path.join(os.getcwd(), "audio2.wav")
 
 # Play the first video
 mlask(begin="\n")
-mlcat("The first sample audio...", """""")
+mlcat("", """
+The first sample audio...""")
 os.system(f'aplay {first} >/dev/null 2>&1')
+mlask()
 
 # Play the second video
-mlcat("The second sample audio...", """""")
+mlcat("", """
+The second sample audio...
+""")
 os.system(f'aplay {second} >/dev/null 2>&1')
+mlask()
 
 # Play the third video
-mlcat("The third sample audio...", """""")
+mlcat("", """
+The third sample audio...
+""")
 os.system(f'aplay {third} >/dev/null 2>&1')
+mlask()
 
 # Play the fourth video
-
-mlcat("The fourth audio that needs to identify...", """""")
-os.system(f'aplay {fourth} >/dev/null 2>&1')
+mlcat("", """
+The fourth audio that needs to verify...
+""")
+os.system(f'aplay {third} >/dev/null 2>&1')
+mlask()
 
 
 mlcat("Get the result", """\
@@ -151,7 +161,7 @@ characteristics.
 """)
 
 mlask(begin="\n")
-recognise([first, second, third], fourth)
+recognise([first, second, third], third)
 
 
 
