@@ -18,7 +18,7 @@ dependencies:
     - transcribe.py
     - synthesize.py
     - translate.py
-    - recognise
+    - recognise.py
     - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe01.wav
     - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe02.wav
     - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe03.wav
