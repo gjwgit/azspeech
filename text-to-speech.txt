@@ -1,0 +1,50 @@
+Language	Locale	Gender	Voice name	Style
+Arabic (Egypt)	ar-EG	Female	ar-EG-SalmaNeural
+Arabic (Saudi Arabia)	ar-SA	Female	ar-SA-ZariyahNeural
+Bulgarian (Bulgaria)	bg-BG	Female	bg-BG-KalinaNeural
+Catalan (Spain)	ca-ES	Female	ca-ES-AlbaNeural
+Chinese (Cantonese, Traditional)	zh-HK	Female	zh-HK-HiuGaaiNeural
+Chinese (Mandarin, Simplified)	zh-CN	Female	zh-CN-XiaoxiaoNeural
+Chinese (Taiwanese Mandarin)	zh-TW	Female	zh-TW-HsiaoChenNeural
+Croatian (Croatia)	hr-HR	Female	hr-HR-GabrijelaNeural
+Czech (Czech)	cs-CZ	Female	cs-CZ-VlastaNeural
+Danish (Denmark)	da-DK	Female	da-DK-ChristelNeural
+Dutch (Netherlands)	nl-NL	Female	nl-NL-ColetteNeural
+English (Australia)	en-AU	Female	en-AU-NatashaNeural
+English (Canada)	en-CA	Female	en-CA-ClaraNeural
+English (India)	en-IN	Female	en-IN-NeerjaNeural
+English (Ireland)	en-IE	Female	en-IE-EmilyNeural
+English (United Kingdom)	en-GB	Female	en-GB-LibbyNeural
+English (United States)	en-US	Female	en-US-AriaNeural
+Finnish (Finland)	fi-FI	Female	fi-FI-NooraNeural
+French (Canada)	fr-CA	Female	fr-CA-SylvieNeural
+French (France)	fr-FR	Female	fr-FR-DeniseNeural
+French (Switzerland)	fr-CH	Female	fr-CH-ArianeNeural
+German (Austria)	de-AT	Female	de-AT-IngridNeural
+German (Germany)	de-DE	Female	de-DE-KatjaNeural
+German (Switzerland)	de-CH	Female	de-CH-LeniNeural
+Greek (Greece)	el-GR	Female	el-GR-AthinaNeural
+Hebrew (Israel)	he-IL	Female	he-IL-HilaNeural
+Hindi (India)	hi-IN	Female	hi-IN-SwaraNeural
+Hungarian (Hungary)	hu-HU	Female	hu-HU-NoemiNeural
+Indonesian (Indonesia)	id-ID	Female	id-ID-GadisNeural
+Italian (Italy)	it-IT	Female	it-IT-ElsaNeural
+Japanese (Japan)	ja-JP	Female	ja-JP-NanamiNeural
+Korean (Korea)	ko-KR	Female	ko-KR-SunHiNeural
+Malay (Malaysia)	ms-MY	Female	ms-MY-YasminNeural
+Norwegian (Bokmål, Norway)	nb-NO	Female	nb-NO-IselinNeural
+Polish (Poland)	pl-PL	Female	pl-PL-AgnieszkaNeural
+Portuguese (Brazil)	pt-BR	Female	pt-BR-FranciscaNeural
+Portuguese (Portugal)	pt-PT	Female	pt-PT-FernandaNeural
+Romanian (Romania)	ro-RO	Female	ro-RO-AlinaNeural
+Russian (Russia)	ru-RU	Female	ru-RU-DariyaNeural
+Slovak (Slovakia)	sk-SK	Female	sk-SK-ViktoriaNeural
+Slovenian (Slovenia)	sl-SI	Female	sl-SI-PetraNeural
+Spanish (Mexico)	es-MX	Female	es-MX-DaliaNeural
+Spanish (Spain)	es-ES	Female	es-ES-ElviraNeural
+Swedish (Sweden)	sv-SE	Female	sv-SE-HilleviNeural
+Tamil (India)	ta-IN	Female	ta-IN-PallaviNeural
+Thai (Thailand)	th-TH	Female	th-TH-AcharaNeural
+Turkish (Turkey)	tr-TR	Male	tr-TR-AhmetNeural
+Vietnamese (Vietnam)	vi-VN	Female	vi-VN-HoaiMyNeural
+

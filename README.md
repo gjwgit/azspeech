@@ -30,6 +30,7 @@ $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_
 
 $ ml synthesize azspeech Welcome my friend, welcome to the machine.
 $ ml synthesize azspeech --file=ai.txt
+$ ml synthesize azspeech --output=spoken.wav
 
 $ ml transcribe azspeech
 $ ml transcribe azspeech --file=harvard.wav
@@ -52,7 +53,7 @@ $ ml transcribe azspeech --file=harvard.wav
 		
 - Command line tools:
 
-		$ ml synthesize azspeech [(--file|-f) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence]
+		$ ml synthesize azspeech [(--file|-f) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence] [(--output|-o) <wav file>]
 		$ ml transcribe azspeech [(--file|-f) <wav file>]
 
 
@@ -64,7 +65,8 @@ of useful command line tools.
 ### *synthesize* to speaker
 
 The *synthesize* command will generate spoken word audio from supplied
-text and play the audio on the system's default audio output.
+text and play the audio on the system's default audio output. It has the option 
+to save an audio (wav) file. 
 
 ```console
 $ ml synthesize azspeech Welcome my son, welcome to the machine.
@@ -74,6 +76,7 @@ $ ml synthesize azspeech --voice=en-AU-NatashaNeural You brought a guitar to pun
 $ echo It's alright, we told you what to dream | ml synthesize azspeech
 
 $ ml synthesize azspeech --file=short.txt
+$ ml synthesize azspeech --output=spoken.wav
 $ ml synthesize azspeech --lang=de-DE --file=short.txt
 $ ml synthesize azspeech --voice=fr-FR-DeniseNeural --file=short.txt
 ```
