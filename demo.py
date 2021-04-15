@@ -24,7 +24,7 @@ Speaker Recognition capabilities.
 # Import the required libraries.
 
 import os
-import sys
+from intent import intent
 from translate import translate_speech_to_text
 from recognise import recognise
 import azure.cognitiveservices.speech as speechsdk
@@ -100,11 +100,11 @@ result = speech_synthesizer.speak_text_async(text).get()
 # Translate language to other language
 # -----------------------------------------------------------------------
 
-mlask(begin="\n")
+mlask(end ="\n")
 
 mlcat("Speech Translation", """\
-This part is to translate English to other language. Now please speak English. 
-This speech service will translate it to French.
+This part is to translate English to other language. Now please speak
+English. This speech service will translate it to French.
 """)
 
 mlask()
@@ -116,9 +116,10 @@ translate_speech_to_text("en-US", "fr")
 
 mlask(begin="\n")
 mlcat("Speaker Recognition", """\
-This part is the act of confirming that a speaker matches a enrolled voice. 
-Now you will hear four audios. The first three will be the sample audios, 
-and the fourth one will be the audio that needs to compare against them.
+This part is the act of confirming that a speaker matches a enrolled
+voice. Now you will hear four audios. The first three will be the 
+sample audios, and the fourth one will be the audio that needs to 
+compare against them.
 """)
 
 first = os.path.join(os.getcwd(), "audio.wav")
@@ -126,46 +127,61 @@ second = os.path.join(os.getcwd(), "audio1.wav")
 third = os.path.join(os.getcwd(), "audio2.wav")
 
 # Play the first audio
-mlask(begin="\n")
+mlask(end="\n")
 mlcat("", """
-The first sample audio...""")
+The first sample audio...
+""")
 os.system(f'aplay {first} >/dev/null 2>&1')
-mlask()
+mlask(end="\n")
 
 # Play the second audio
 mlcat("", """
 The second sample audio...
 """)
 os.system(f'aplay {second} >/dev/null 2>&1')
-mlask()
+mlask(end="\n")
 
 # Play the third audio
 mlcat("", """
 The third sample audio...
 """)
 os.system(f'aplay {third} >/dev/null 2>&1')
-mlask()
+mlask(end="\n")
 
 # Play the fourth audio
 mlcat("", """
 The fourth audio that needs to verify...
 """)
 os.system(f'aplay {third} >/dev/null 2>&1')
-mlask()
+mlask(end="\n")
 
 
 mlcat("Get the result", """\
-Now, we will insert the first three examples into our recognition system, 
-and use these samples to verify the fourth audio by its unique voice 
-characteristics. 
+Now, we will insert the first three examples into our recognition 
+system, and use these samples to verify the fourth audio by its 
+unique voice characteristics. 
 """)
 
-mlask(begin="\n")
+mlask()
 recognise([first, second, third], third)
 
+# -----------------------------------------------------------------------
+# Intent Recognition
+# -----------------------------------------------------------------------
+mlask(end="\n")
+url = "https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-get-started-create-app"
+mlcat("Intent Recognition", """\
+This part is Intent Recognition. Intent is something that users want 
+to do: such as turn on the light,turn off the oven, check the weather. 
+By using the intent recognition, your devices can determine what your 
+wishes to initiate or do based on options you define in Language 
+Understanding (LUIS). 
 
+Before continuing, make sure you have followed the instruction: {}
+to create the LUIS app, and you have LUIS primary key, LUIS Location and LUIS App ID.
+""".format(url))
 
-
-
+mlask(end="\n")
+intent()
 
 
