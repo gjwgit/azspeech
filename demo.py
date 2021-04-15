@@ -121,10 +121,9 @@ Now you will hear four audios. The first three will be the sample audios,
 and the fourth one will be the audio that needs to compare against them.
 """)
 
-first = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
-second = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
-third = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
-fourth = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
+first = os.path.join(os.getcwd(), "audio.wav")
+second = os.path.join(os.getcwd(), "audio1.wav")
+third = os.path.join(os.getcwd(), "audio2.wav")
 
 # Play the first video
 mlask(begin="\n")

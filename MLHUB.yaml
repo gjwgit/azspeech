@@ -22,10 +22,9 @@ dependencies:
     - translate.py
     - recognise.py
     - text-to-speech.txt
-    - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe01.wav
-    - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe02.wav
-    - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe03.wav
-    - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe04.wav
+    - audio.wav
+    - audio1.wav
+    - audio2.wav
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.
