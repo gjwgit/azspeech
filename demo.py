@@ -125,28 +125,28 @@ first = os.path.join(os.getcwd(), "audio.wav")
 second = os.path.join(os.getcwd(), "audio1.wav")
 third = os.path.join(os.getcwd(), "audio2.wav")
 
-# Play the first video
+# Play the first audio
 mlask(begin="\n")
 mlcat("", """
 The first sample audio...""")
 os.system(f'aplay {first} >/dev/null 2>&1')
 mlask()
 
-# Play the second video
+# Play the second audio
 mlcat("", """
 The second sample audio...
 """)
 os.system(f'aplay {second} >/dev/null 2>&1')
 mlask()
 
-# Play the third video
+# Play the third audio
 mlcat("", """
 The third sample audio...
 """)
 os.system(f'aplay {third} >/dev/null 2>&1')
 mlask()
 
-# Play the fourth video
+# Play the fourth audio
 mlcat("", """
 The fourth audio that needs to verify...
 """)

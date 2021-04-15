@@ -15,12 +15,14 @@ dependencies:
 
   files:
     - https://mlhub.ai/empty.txt: private.txt
+    - https://mlhub.ai/empty.txt: private_luis.txt
     - README.md
     - demo.py
     - transcribe.py
     - synthesize.py
     - translate.py
     - recognise.py
+    - intent.py
     - text-to-speech.txt
     - audio.wav
     - audio1.wav
@@ -31,3 +33,4 @@ commands:
   synthesize : Speek text from command line. Supports --file, --lang, --voice and --output.
   translate  : Translate speech from microphone. Supports --original, --target and --output.
   recognise  : Confirm that a speaker matches a known, or enrolled voice. Supports --file and --verify.
+  intent     : Recognize intents from audio.
