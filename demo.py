@@ -13,7 +13,8 @@ from mlhub.pkg import azkey, mlask, mlcat
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
 through Azure's Cognitive Services. The Speech cloud service 
-supports speech to text and text to speech capabilities.
+supports speech to text, text to speech, speech translation and 
+Speaker Recognition capabilities.
 """)
 
 # ----------------------------------------------------------------------
@@ -25,6 +26,7 @@ supports speech to text and text to speech capabilities.
 import os
 import sys
 from translate import translate_speech_to_text
+from recognise import recognise
 import azure.cognitiveservices.speech as speechsdk
 
 # ----------------------------------------------------------------------
@@ -118,6 +120,40 @@ This part is the act of confirming that a speaker matches a enrolled voice.
 Now you will hear four audios. The first three will be the sample audios, 
 and the fourth one will be the audio that needs to compare against them.
 """)
+
+first = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
+second = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
+third = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
+fourth = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
+
+# Play the first video
+mlask(begin="\n")
+mlcat("The first sample audio...", """""")
+os.system(f'aplay {first} >/dev/null 2>&1')
+
+# Play the second video
+mlcat("The second sample audio...", """""")
+os.system(f'aplay {second} >/dev/null 2>&1')
+
+# Play the third video
+mlcat("The third sample audio...", """""")
+os.system(f'aplay {third} >/dev/null 2>&1')
+
+# Play the fourth video
+
+mlcat("The fourth audio that needs to identify...", """""")
+os.system(f'aplay {fourth} >/dev/null 2>&1')
+
+
+mlcat("Get the result", """\
+Now, we will insert the first three examples into our recognition system, 
+and use these samples to verify the fourth audio by its unique voice 
+characteristics. 
+""")
+
+mlask(begin="\n")
+recognise([first, second, third], fourth)
+
 
 
 

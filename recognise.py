@@ -18,13 +18,11 @@ option_parser.add_argument(
     '--file',
     "-f",
     action='append',
-    required=True,
     help='wav input file')
 
 option_parser.add_argument(
     '--verify',
     "-v",
-    required=True,
     help='the wav file which wants to verify')
 
 args = option_parser.parse_args()
@@ -130,4 +128,6 @@ def recognise(file, verify):
     requests.delete(delete_url, headers=delete_header)
 
 if __name__=="__main__":
-    recognise(args.file, args.verify)
+    sample = args.file
+    target = args.verify
+    recognise(sample, target)
