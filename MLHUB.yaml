@@ -11,6 +11,8 @@ meta:
 dependencies:
   pip3:
     - azure-cognitiveservices-speech
+    - pandas --no-build-isolation
+
   files:
     - https://mlhub.ai/empty.txt: private.txt
     - README.md
@@ -19,6 +21,7 @@ dependencies:
     - synthesize.py
     - translate.py
     - recognise.py
+    - text-to-speech.txt
     - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe01.wav
     - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe02.wav
     - https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/speaker-recognition/helloworld/myVoiceIsMyPassportVerifyMe03.wav
