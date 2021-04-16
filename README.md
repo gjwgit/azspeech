@@ -198,12 +198,75 @@ Press Enter to continue:
 Now type text to be spoken. When Enter is pressed you will hear the result.
 
 > Welcome to a demo of the prebuilt models for speech.
+
+==================
+Speech Translation
+==================
+
+This part is to translate English to other language. Now please speak
+English. This speech service will translate it to French.
+
+Press Enter to continue: 
+
+Say something...
+Recognized: "Hello."
+Translated into "fr": Bonjour.
+
+Press Enter to continue: 
+
+===================
+Speaker Recognition
+===================
+
+This part is the act of confirming that a speaker matches a enrolled
+voice. Now you will hear four audios. The first three will be the
+sample audios, and the fourth one will be the audio that needs to
+compare against them.
+
+Press Enter to continue: 
+
+ The first sample audio...
+
+Press Enter to continue: 
+
+ The second sample audio...
+
+Press Enter to continue: 
+
+ The third sample audio...
+
+Press Enter to continue: 
+
+ The fourth audio that needs to verify...
+
+Press Enter to continue: 
+
+==============
+Get the result
+==============
+
+Now, we will insert the first three examples into our recognition
+system, and use these samples to verify the fourth audio by its
+unique voice characteristics.
+
+Press Enter to continue: 
+
+Result: Accept
+Score: 0.8664135336875916
+
 ```
 
 The first paragraph from the screen was read and the Azure Speech to
-Text service was mostly accurate in its transcription. For synthesis
+Text service was mostly accurate in its transcription. 
+
+For synthesis
 the same text was used and could be heard through the system speakers.
 
+For speak translation, it will show both language's transcribed words
+and play the audio for the target language. 
+
+For Speaker Recognition, four audios will be played orderly, and the 
+results will be shown after that. 
 
 ## Resources
 
