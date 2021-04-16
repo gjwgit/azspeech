@@ -22,7 +22,6 @@ dependencies:
     - synthesize.py
     - translate.py
     - recognise.py
-    - intent.py
     - text-to-speech.txt
     - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav
     - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav
@@ -34,4 +33,3 @@ commands:
   synthesize : Speek text from command line. Supports --file, --lang, --voice and --output.
   translate  : Translate speech from microphone. Supports --original, --target and --output.
   recognise  : Confirm that a speaker matches a known, or enrolled voice. Supports --file and --verify.
-  intent     : Recognize intents from audio.

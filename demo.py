@@ -13,8 +13,8 @@ from mlhub.pkg import azkey, mlask, mlcat
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
 through Azure's Cognitive Services. The Speech cloud service 
-supports speech to text, text to speech, speech translation, 
-Speaker Recognition and Intent Recognition capabilities. We recommend
+supports speech to text, text to speech, speech translation and 
+Speaker Recognition capabilities. We recommend
 choosing westus in Location because Speaker Recognition can only work 
 under this location. 
 """)
@@ -26,7 +26,6 @@ under this location.
 # Import the required libraries.
 
 import os
-from intent import intent
 from translate import translate_speech_to_text
 from recognise import recognise
 import azure.cognitiveservices.speech as speechsdk
@@ -166,24 +165,5 @@ unique voice characteristics.
 
 mlask(end="\n")
 recognise([first, second, third], fourth)
-
-# -----------------------------------------------------------------------
-# Intent Recognition
-# -----------------------------------------------------------------------
-mlask(begin="\n", end="\n")
-url = "https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-get-started-create-app"
-mlcat("Intent Recognition", """\
-This part is Intent Recognition. Intent is something that users want 
-to do: such as turn on the light,turn off the oven, check the weather. 
-By using the intent recognition, your devices can determine what your 
-wishes to initiate or do based on options you define in Language 
-Understanding (LUIS). 
-
-Before continuing, make sure you have followed the instruction: {}
-to create the LUIS app, and you have LUIS primary key, LUIS Location and LUIS App ID.
-""".format(url))
-
-mlask(end="\n")
-intent()
 
 
