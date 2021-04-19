@@ -108,8 +108,8 @@ This part is to translate English to other language. Now please speak
 English. This speech service will translate it to French.
 """)
 
-mlask(end="\n")
-translate_speech_to_text("en-US", "fr")
+mlask(end="\n", prompt="Wait 1 second to speak after pressing Enter")
+translate_speech_to_text("en-US", "fr", False)
 
 # -----------------------------------------------------------------------
 # Confirming that the speaker matches a known, or enrolled voice
