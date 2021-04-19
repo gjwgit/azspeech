@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Sunday 2020-06-28 15:06:46 AEST Graham Williams>
+# Time-stamp: <Tuesday 2021-04-20 09:16:19 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -25,9 +25,9 @@ from azure.cognitiveservices.speech.audio import AudioOutputConfig
 from mlhub.pkg import azkey
 from mlhub.utils import get_cmd_cwd
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Process the command line.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
 
@@ -42,15 +42,15 @@ option_parser.add_argument(
 
 option_parser.add_argument(
     '--lang', "-l",
-    help=f'spoken language')
+    help='spoken language')
 
 option_parser.add_argument(
     '--voice', "-v",
-    help=f'spoken voice')
+    help='spoken voice')
 
 option_parser.add_argument(
     '--output', "-o",
-    help=f'path to an audio file to save. The file type should be wav')
+    help='path to an audio file to save. The file type should be wav')
 
 args = option_parser.parse_args()
 
@@ -60,8 +60,8 @@ text = " ".join(args.sentence)
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE   = "Speech"
-KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
+SERVICE = "Speech"
+KEY_FILE = os.path.join(os.getcwd(), "private.txt")
 
 key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 
@@ -82,28 +82,30 @@ elif args.sentence:
 
 text = " ".join(text.splitlines())
 text = " ".join(text.splitlines())
-text = text.replace("\. ", "\n")
-text = re.sub("\. ", "\n", text)
+text = text.replace(". ", "\n")
 text = text.splitlines()
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Set up a speech synthesizer using the default speaker as audio output.
 #
 # https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support
 #
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
-speech_config = speechsdk.SpeechConfig(subscription=key, region=location)
+speech_conf = speechsdk.SpeechConfig(subscription=key, region=location)
 
 
-if args.lang: speech_config.speech_synthesis_language = args.lang
-if args.voice: speech_config.speech_synthesis_voice_name = args.voice
+if args.lang:
+    speech_conf.speech_synthesis_language = args.lang
+if args.voice:
+    speech_conf.speech_synthesis_voice_name = args.voice
 
 if args.output:
-    audio_config = AudioOutputConfig(filename=args.output)
-    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+    audio_conf = AudioOutputConfig(filename=args.output)
+    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_conf,
+                                                     audio_config=audio_conf)
 else:
-    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
+    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_conf)
 
 # ----------------------------------------------------------------------
 # Synthesize the text to speech. When the following line is run expect
@@ -117,7 +119,8 @@ else:
     if sys.stdin.isatty():
         try:
             for line in sys.stdin:
-                if line == "\n": break
+                if line == "\n":
+                    break
                 result = speech_synthesizer.speak_text_async(line).get()
         except KeyboardInterrupt:
             pass
