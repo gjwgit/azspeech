@@ -107,7 +107,6 @@ def recognise(file, verify, single_line):
         binary_data = w.readframes(w.getnframes())
         w.close()
         result = requests.post(enroll_url, data=binary_data, headers=enroll_header)
-        print(result.json())
 
         # Catch the invalid audios
         try:
