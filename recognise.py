@@ -34,8 +34,12 @@ args = option_parser.parse_args()
 SERVICE = "Speech"
 KEY_FILE = os.path.join(os.getcwd(), "private.txt")
 
+RECOGNISE_FLAG = True
+
 key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 
+if location != "westus":
+    RECOGNISE_FLAG = False
 
 def recognise(file, verify, single_line):
     # -----------------------------------------------------------------------
@@ -140,7 +144,6 @@ def recognise(file, verify, single_line):
     binary_data = w.readframes(w.getnframes())
     w.close()
     result = requests.post(verify_url, data=binary_data, headers=verify_header)
-    print(result.json())
 
     try:
         if not single_line:
@@ -167,4 +170,10 @@ def recognise(file, verify, single_line):
 if __name__ == "__main__":
     sample = args.file
     target = args.verify
-    recognise(sample, target, True)
+    if RECOGNISE_FLAG:
+        recognise(sample, target, True)
+    else:
+        print("This service currently only supported in Azure Speech resources "
+              "created in the westus region. \nIf you want to use this service, please "
+              "create another resource under westus region.", file=sys.stderr)
+        os.system("rm private.txt")

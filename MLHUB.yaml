@@ -2,11 +2,11 @@
 meta:
   name         : azspeech
   title        : Azure Speech cognitive services on the cloud.
-  keywords     : azure, speech synthesis, natural language processing, deep neural networks, speech to text, text to speech, transcription
+  keywords     : azure, speech synthesis, natural language processing, deep neural networks, speech to text, text to speech, transcription, recognise, translate
   version      : 4.1.4
   languages    : py
   license      : mit
-  author       : Graham.Williams@microsoft.com
+  author       : Graham.Williams@microsoft.com, Jingjing.Shi@anu.edu.au
   url          : https://github.com/gjwgit/azspeech
 dependencies:
   pip3:
@@ -15,7 +15,6 @@ dependencies:
 
   files:
     - https://mlhub.ai/empty.txt: private.txt
-    - https://mlhub.ai/empty.txt: private_luis.txt
     - README.md
     - demo.py
     - transcribe.py
