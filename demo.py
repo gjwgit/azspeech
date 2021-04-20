@@ -42,7 +42,6 @@ RECOGNISE_FLAG = True
 if location != "westus":
     RECOGNISE_FLAG = False
 
-
 # -----------------------------------------------------------------------
 # Set up a speech recognizer and synthesizer.
 # -----------------------------------------------------------------------
@@ -105,7 +104,7 @@ result = speech_synthesizer.speak_text_async(text).get()
 # Translate language to other language
 # -----------------------------------------------------------------------
 
-mlask(begin="\n", end ="\n")
+mlask(begin="\n", end="\n")
 
 mlcat("Speech Translation", """\
 This part is to translate English to other language. Now please speak
@@ -128,10 +127,14 @@ voice. Now you will hear four audios. The first three will be the sample audios,
 and the fourth one will be the audio that needs to compare against them.
 """)
 
-    first = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
-    second = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
-    third = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
-    fourth = os.path.join(os.getcwd(), "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
+    first = os.path.join(os.getcwd(),
+                         "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
+    second = os.path.join(os.getcwd(),
+                          "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
+    third = os.path.join(os.getcwd(),
+                         "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
+    fourth = os.path.join(os.getcwd(),
+                          "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
     # Play the first audio
     mlask(end="\n")
     mlcat("", """
@@ -161,7 +164,6 @@ The fourth audio that needs to verify...
     os.system(f'aplay {fourth} >/dev/null 2>&1')
     mlask(end="\n")
 
-
     mlcat("Get the result", """\
 Now, we will insert the first three examples into our recognition system, and 
 use these samples to verify the fourth audio by its unique voice characteristics. 
@@ -175,9 +177,9 @@ else:
     mlask(begin="\n", end="\n")
     mlcat("Speaker Recognition", """\
 This part is the act of confirming that a speaker matches a enrolled
-voice. This service currently only supported in Azure Speech resources 
+voice.
+Note: This service currently only supported in Azure Speech resources 
 created in the westus region. If you want to use this service, please 
 create another resource under westus region.
 """)
     os.system("rm private.txt")
-
