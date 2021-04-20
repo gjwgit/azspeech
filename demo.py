@@ -177,9 +177,9 @@ else:
     mlask(begin="\n", end="\n")
     mlcat("Speaker Recognition", """\
 This part is the act of confirming that a speaker matches a enrolled
-voice.
-Note: This service currently only supported in Azure Speech resources 
-created in the westus region. If you want to use this service, please 
-create another resource under westus region.
+voice.\n
+Note: This service currently only supported in Azure Speech resources created in the
+westus region. If you want to use this service, please create another resource under
+westus region.
 """)
     os.system("rm private.txt")
