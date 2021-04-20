@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Tuesday 2021-04-20 09:16:19 AEST Graham Williams>
+# Time-stamp: <Tuesday 2021-04-20 16:41:05 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -15,7 +15,6 @@
 # Import the required libraries.
 
 import os
-import re
 import sys
 import argparse
 
@@ -53,8 +52,6 @@ option_parser.add_argument(
     help='path to an audio file to save. The file type should be wav')
 
 args = option_parser.parse_args()
-
-text = " ".join(args.sentence)
 
 # ----------------------------------------------------------------------
 # Request subscription key and location from user.
