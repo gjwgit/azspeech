@@ -6,7 +6,7 @@ meta:
   version      : 4.2.0
   languages    : py
   license      : mit
-  author       : Graham.Williams@microsoft.com
+  author       : Graham.Williams@microsoft.com, Jingjing.Shi@anu.edu.au
   url          : https://github.com/gjwgit/azspeech
 dependencies:
   pip3:
@@ -15,22 +15,20 @@ dependencies:
 
   files:
     - https://mlhub.ai/empty.txt: private.txt
-    - https://mlhub.ai/empty.txt: private_luis.txt
     - README.md
     - demo.py
     - transcribe.py
     - synthesize.py
     - translate.py
     - recognise.py
-    - intent.py
     - text-to-speech.txt
-    - audio.wav
-    - audio1.wav
-    - audio2.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav
+    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.
   synthesize : Speek text from command line. Supports --file, --lang, --voice and --output.
   translate  : Translate speech from microphone. Supports --original, --target and --output.
   recognise  : Confirm that a speaker matches a known, or enrolled voice. Supports --file and --verify.
-  intent     : Recognize intents from audio.

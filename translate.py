@@ -5,6 +5,7 @@ import azure.cognitiveservices.speech as speechsdk
 import argparse
 from mlhub.pkg import azkey
 import pandas
+import sys
 
 # -----------------------------------------------------------------------
 # Process the command line
@@ -70,7 +71,7 @@ for index, row in dataframe_speech.iterrows():
 # ----------------------------------------------------------------------
 
 
-def translate_speech_to_text(from_language, to_language):
+def translate_speech_to_text(from_language, to_language, single_line):
     translation_config = speechsdk.translation.SpeechTranslationConfig(
         subscription=key, region=region)
 
@@ -80,18 +81,43 @@ def translate_speech_to_text(from_language, to_language):
     recognizer = speechsdk.translation.TranslationRecognizer(
         translation_config=translation_config)
 
-    print('Say something...')
     result = recognizer.recognize_once()
-    synthesize_translations(from_language, to_language, result=result)
+    synthesize_translations(to_language, single_line, result=result)
 
 
-def synthesize_translations(from_language, to_language, result):
-    print(f'Recognized: "{result.text}"')
-    translation = result.translations[to_language]
-    print(f'Translated into "{to_language}": {translation}')
+def synthesize_translations(to_language, single_line, result):
+    if not single_line:
+        print(f'Recognized: "{result.text}"')
+        try:
+            translation = result.translations[to_language]
+        except Exception as e:
+            print(f"Error:{e}.")
+            print("Error: wrong original or target language code. For original language code, please choose one from "
+                  "Loale in Speech-to-text table"
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-to-text).\n"
+                  "For target language code, please choose one from Language Code in Text languages table"
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-translation)")
+            sys.exit(1)
+        print(f'Translated into "{to_language}": {translation}')
+    else:
+        try:
+            translation = result.translations[to_language]
+        except Exception as e:
+            print(f"Error:{e}.")
+            print("Error: wrong original or target language code. For original language code, please choose one from "
+                  "Loale in Speech-to-text table"
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-to-text).\n"
+                  "For target language code, please choose one from Language Code in Text languages table"
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-translation)")
+            sys.exit(1)
+        print(f'Recognized: "{result.text}". Translated into "{to_language}": {translation}')
 
-    speech_conf = speechsdk.SpeechConfig(subscription=key, region=region)
-    speech_conf.speech_synthesis_voice_name = language_to_voice_map.get(to_language)
+    speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
+    try:
+        speech_config.speech_synthesis_voice_name = language_to_voice_map.get(to_language)
+    except:
+        print("Error: This target language doesn't have speech.")
+        sys.exit(1)
 
 
     if args.output:
@@ -109,4 +135,4 @@ to_language = args.target
 if __name__ == "__main__":
     from_language = args.original
     to_language = args.target
-    translate_speech_to_text(from_language, to_language)
+    translate_speech_to_text(from_language, to_language, True)

@@ -2,16 +2,18 @@
 
 This [MLHub](https://mlhub.ai) package provides a demonstration and
 command line tools built from the pre-built Speech models provided
-through Azure's Cognitive Services. This service can, for example,
-take an audio signal and transcribe it to return the text. It also
-supports speech synthesis, taking text and synthesising a voice to
-read the text with multiple voices and languages available.
+through Azure's Cognitive Services. This service can support speech 
+to text, text to speech, speech translation and Speaker Recognition 
+capabilities.
 
 An Azure subscription is required, allowing up to 5,000 free
 transactions per month (https://azure.microsoft.com/free/). Through
 the [Azure Portal](https://ms.portal.azure.com) create a Speech
 resource and use the resulting key and endpoint from the portal for
-the *demo*.
+the *demo*. 
+
+**Note**: we highly recommend choosing westus in Location because Speaker Recognition
+can only work under this area. 
 
 **Warning** Unlike the MLHub models in general these Azure models use
 *closed source services* which have no guarantee of ongoing
@@ -34,6 +36,11 @@ $ ml synthesize azspeech --output=spoken.wav
 
 $ ml transcribe azspeech
 $ ml transcribe azspeech --file=harvard.wav
+
+$ ml translate azspeech --target=fr
+$ ml translate azspeech --original=zh-CN --target=fr --ouput=spoken.wav
+
+$ ml recognise azspeech --file=sample.wav --file=sample2.wav --file=sample3.wav --verify=verify.wav
 ```
 
 ## Usage
@@ -48,14 +55,15 @@ $ ml transcribe azspeech --file=harvard.wav
 		$ ml install   azspeech
 		$ ml configure azspeech
 		$ ml readme    azspeech
-		$ ml commands  axspeech
+		$ ml commands  azspeech
 		$ ml demo      azspeech
 		
 - Command line tools:
 
 		$ ml synthesize azspeech [(--file|-f) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence] [(--output|-o) <wav file>]
 		$ ml transcribe azspeech [(--file|-f) <wav file>]
-
+		$ ml translate azspeech [(--original) <from language code>] [(--target) <to language code>] [(--output) <wav file>]
+		$ ml recognise azspeech [(--file) <sample wav file>] [(--file) <sample2 wav file>] [(--file) <sample3 wav file>] [(--verify) <verify wav file>]
 
 ## Command Line Tools
 
@@ -124,6 +132,41 @@ Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 ```console
 $ ml transcribe azspeech | ml translate aztranslate --to=fr | cut -d',' -f4- | ml synthesize azspeech --voice=fr-FR-HortenseRUS
 ```
+### Speech Translation
+
+The *translate* command can listen for  an utterance from the computer microphone
+for up to 15 seconds and then translate it to other language. It has the option to save
+the output audio (wav) file. The default input language is English, users can choose a different language 
+as they prefer. 
+
+```console
+$ ml translate azspeech --target fr
+$ ml translate azspeech --original zh-CN --target fr
+$ ml translate azspeech --original zh-CN --target fr --output out.wav
+```
+
+**Note**: The language code in *--original* should choose from Locale in Speech-to-text table:
+<https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-to-text>,
+while *--target* should choose from Language Code in Text languages table:
+<https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-translation>
+
+### Speaker Recognise
+
+The *recognise* command can verify if a speaker matches a enrolled voice. Four audios are required. The users should
+choose the same passphrase in these audios. See the [reference doc](https://docs.microsoft.com/en-us/rest/api/speakerrecognition/#text-dependent-speaker-verification) 
+for a list of supported passphrases.
+
+The first three are the sample audios, and the fourth one will be the audio that needs to verify. 
+*result* and *score* are the two components in the output. *result* is "Accept" or "Reject" 
+and *score* is the similarity with range 0-1. The "Accept" or "Reject" response is a result combining 
+both the speaker verification result and speech recognition result, while the similarity score only 
+measures the voice similarity. 
+
+```console
+$ ml recognise azspeech --file sample1.wav --file sample2.wav --file sample3.wav --verify verify.wav
+```
+
+
 
 ## Demonstration
 
@@ -155,12 +198,75 @@ Press Enter to continue:
 Now type text to be spoken. When Enter is pressed you will hear the result.
 
 > Welcome to a demo of the prebuilt models for speech.
+
+==================
+Speech Translation
+==================
+
+This part is to translate English to other language. Now please speak
+English. This speech service will translate it to French.
+
+Press Enter to continue: 
+
+Say something...
+Recognized: "Hello."
+Translated into "fr": Bonjour.
+
+Press Enter to continue: 
+
+===================
+Speaker Recognition
+===================
+
+This part is the act of confirming that a speaker matches a enrolled
+voice. Now you will hear four audios. The first three will be the
+sample audios, and the fourth one will be the audio that needs to
+compare against them.
+
+Press Enter to continue: 
+
+ The first sample audio...
+
+Press Enter to continue: 
+
+ The second sample audio...
+
+Press Enter to continue: 
+
+ The third sample audio...
+
+Press Enter to continue: 
+
+ The fourth audio that needs to verify...
+
+Press Enter to continue: 
+
+==============
+Get the result
+==============
+
+Now, we will insert the first three examples into our recognition
+system, and use these samples to verify the fourth audio by its
+unique voice characteristics.
+
+Press Enter to continue: 
+
+Result: Accept
+Score: 0.8664135336875916
+
 ```
 
 The first paragraph from the screen was read and the Azure Speech to
-Text service was mostly accurate in its transcription. For synthesis
+Text service was mostly accurate in its transcription. 
+
+For synthesis
 the same text was used and could be heard through the system speakers.
 
+For speak translation, it will show both language's transcribed words
+and play the audio for the target language. 
+
+For Speaker Recognition, four audios will be played orderly, and the 
+results will be shown after that. 
 
 ## Resources
 

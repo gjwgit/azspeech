@@ -13,10 +13,8 @@ from mlhub.pkg import azkey, mlask, mlcat
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
 through Azure's Cognitive Services. The Speech cloud service 
-supports speech to text, text to speech, speech translation, 
-Speaker Recognition and Intent Recognition capabilities. We recommend
-choosing westus in Location because Speaker Recognition can only work 
-under this location. 
+supports speech to text, text to speech, speech translation and 
+Speaker Recognition capabilities.
 """)
 
 # ----------------------------------------------------------------------
@@ -26,7 +24,6 @@ under this location.
 # Import the required libraries.
 
 import os
-from intent import intent
 from translate import translate_speech_to_text
 from recognise import recognise
 import azure.cognitiveservices.speech as speechsdk
@@ -39,6 +36,11 @@ SERVICE = "Speech"
 KEY_FILE = os.path.join(os.getcwd(), "private.txt")
 
 key, location = azkey(KEY_FILE, SERVICE, connect="location")
+
+RECOGNISE_FLAG = True
+
+if location != "westus":
+    RECOGNISE_FLAG = False
 
 # -----------------------------------------------------------------------
 # Set up a speech recognizer and synthesizer.
@@ -102,88 +104,83 @@ result = speech_synthesizer.speak_text_async(text).get()
 # Translate language to other language
 # -----------------------------------------------------------------------
 
-mlask(begin="\n", end ="\n")
+mlask(begin="\n", end="\n")
 
 mlcat("Speech Translation", """\
 This part is to translate English to other language. Now please speak
 English. This speech service will translate it to French.
 """)
 
-mlask(end="\n")
-translate_speech_to_text("en-US", "fr")
+mlask(end="\n", prompt="Wait 1 second to speak after pressing Enter")
+translate_speech_to_text("en-US", "fr", False)
 
 # -----------------------------------------------------------------------
 # Confirming that the speaker matches a known, or enrolled voice
 # -----------------------------------------------------------------------
 
-mlask(begin="\n", end="\n")
-mlcat("Speaker Recognition", """\
+if RECOGNISE_FLAG:
+
+    mlask(begin="\n", end="\n")
+    mlcat("Speaker Recognition", """\
 This part is the act of confirming that a speaker matches a enrolled
-voice. Now you will hear four audios. The first three will be the 
-sample audios, and the fourth one will be the audio that needs to 
-compare against them.
+voice. Now you will hear four audios. The first three will be the sample audios, 
+and the fourth one will be the audio that needs to compare against them.
 """)
 
-first = os.path.join(os.getcwd(), "audio.wav")
-second = os.path.join(os.getcwd(), "audio1.wav")
-third = os.path.join(os.getcwd(), "audio2.wav")
-
-# Play the first audio
-mlask(end="\n")
-mlcat("", """
+    first = os.path.join(os.getcwd(),
+                         "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
+    second = os.path.join(os.getcwd(),
+                          "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
+    third = os.path.join(os.getcwd(),
+                         "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
+    fourth = os.path.join(os.getcwd(),
+                          "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
+    # Play the first audio
+    mlask(end="\n")
+    mlcat("", """
 The first sample audio...
 """)
-os.system(f'aplay {first} >/dev/null 2>&1')
-mlask(end="\n")
+    os.system(f'aplay {first} >/dev/null 2>&1')
+    mlask(end="\n")
 
-# Play the second audio
-mlcat("", """
+    # Play the second audio
+    mlcat("", """
 The second sample audio...
 """)
-os.system(f'aplay {second} >/dev/null 2>&1')
-mlask(end="\n")
+    os.system(f'aplay {second} >/dev/null 2>&1')
+    mlask(end="\n")
 
-# Play the third audio
-mlcat("", """
+    # Play the third audio
+    mlcat("", """
 The third sample audio...
 """)
-os.system(f'aplay {third} >/dev/null 2>&1')
-mlask(end="\n")
+    os.system(f'aplay {third} >/dev/null 2>&1')
+    mlask(end="\n")
 
-# Play the fourth audio
-mlcat("", """
+    # Play the fourth audio
+    mlcat("", """
 The fourth audio that needs to verify...
 """)
-os.system(f'aplay {third} >/dev/null 2>&1')
-mlask(end="\n")
+    os.system(f'aplay {fourth} >/dev/null 2>&1')
+    mlask(end="\n")
 
-
-mlcat("Get the result", """\
-Now, we will insert the first three examples into our recognition 
-system, and use these samples to verify the fourth audio by its 
-unique voice characteristics. 
+    mlcat("Get the result", """\
+Now, we will insert the first three examples into our recognition system, and 
+use these samples to verify the fourth audio by its unique voice characteristics. 
 """)
 
-mlask(end="\n")
-recognise([first, second, third], third)
+    mlask(end="\n")
+    recognise([first, second, third], fourth, False)
 
-# -----------------------------------------------------------------------
-# Intent Recognition
-# -----------------------------------------------------------------------
-mlask(begin="\n", end="\n")
-url = "https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-get-started-create-app"
-mlcat("Intent Recognition", """\
-This part is Intent Recognition. Intent is something that users want 
-to do: such as turn on the light,turn off the oven, check the weather. 
-By using the intent recognition, your devices can determine what your 
-wishes to initiate or do based on options you define in Language 
-Understanding (LUIS). 
+else:
 
-Before continuing, make sure you have followed the instruction: {}
-to create the LUIS app, and you have LUIS primary key, LUIS Location and LUIS App ID.
-""".format(url))
+    mlask(begin="\n", end="\n")
+    mlcat("Speaker Recognition", """\
+This part is the act of confirming that a speaker matches a enrolled
+voice.\n
+Note: This service currently only supported in Azure Speech resources created in the
+westus region. If you want to use this service, please create another resource under
+westus region.
 
-mlask(end="\n")
-intent()
-
-
+Once created replace the key in ~/.mlhub/azspeech/private.txt.
+""")
