@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Tuesday 2021-04-20 16:41:05 AEST Graham Williams>
+# Time-stamp: <Wednesday 2021-04-21 10:47:46 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -77,7 +77,6 @@ elif args.sentence:
 # synthesizer (which seems to have a limit of some 640 characters) and
 # is a natural break point anyhow.
 
-text = " ".join(text.splitlines())
 text = " ".join(text.splitlines())
 text = text.replace(". ", "\n")
 text = text.splitlines()
