@@ -181,5 +181,6 @@ voice.\n
 Note: This service currently only supported in Azure Speech resources created in the
 westus region. If you want to use this service, please create another resource under
 westus region.
+
+Once created replace the key in ~/.mlhub/azspeech/private.txt.
 """)
-    os.system("rm private.txt")
