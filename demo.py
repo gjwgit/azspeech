@@ -1,21 +1,12 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Tuesday 2020-07-07 16:28:31 AEST Graham Williams>
+# Time-stamp: <Thursday 2021-04-22 07:35:52 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
 # Author: Graham.Williams@togaware.com
 #
 # This demo is based on the Azure Cognitive Services Speech to Text Quick Start
-
-from mlhub.pkg import azkey, mlask, mlcat
-
-mlcat("Speech Services", """\
-Welcome to a demo of the pre-built models for Speech provided
-through Azure's Cognitive Services. The Speech cloud service 
-supports speech to text, text to speech, speech translation and 
-Speaker Recognition capabilities.
-""")
 
 # ----------------------------------------------------------------------
 # Setup
@@ -27,6 +18,15 @@ import os
 from translate import translate_speech_to_text
 from recognise import recognise
 import azure.cognitiveservices.speech as speechsdk
+
+from mlhub.pkg import azkey, mlask, mlcat
+
+mlcat("Speech Services", """\
+Welcome to a demo of the pre-built models for Speech provided
+through Azure's Cognitive Services. The Speech cloud service
+supports speech to text, text to speech, speech translation and
+Speaker Recognition capabilities.
+""")
 
 # ----------------------------------------------------------------------
 # Request subscription key and location from user.
@@ -67,7 +67,9 @@ speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
 mlask(end="\n")
 
 mlcat("Speech to Text", """\
-Now say something, it will transcribe into text. """)
+The TRANSCRIBE command can take spoken audio, from the microphone
+for example, and transcribe it into text.
+""")
 
 mlask(end=True, prompt="Press Enter and then say something")
 
@@ -122,20 +124,21 @@ if RECOGNISE_FLAG:
 
     mlask(begin="\n", end="\n")
     mlcat("Speaker Recognition", """\
-This part is the act of confirming that a speaker matches a enrolled
-voice. Now you will hear four audios. The first three will be the sample audios, 
-and the fourth one will be the audio that needs to compare against them.
+A peaker recognition system will build a model of a speaker based on samples
+of the speaker. The system can then confirm the speaker matches an enrolled
+voice.
+
+For our demo we will hear three samples that enroll the speaker. A fourth
+audio is then tested against the enrolled speaker.
 """)
 
-    first = os.path.join(os.getcwd(),
-                         "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav")
-    second = os.path.join(os.getcwd(),
-                          "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav")
-    third = os.path.join(os.getcwd(),
-                         "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav")
-    fourth = os.path.join(os.getcwd(),
-                          "quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav")
-    # Play the first audio
+    first = os.path.join(os.getcwd(), "sample1.wav")
+    second = os.path.join(os.getcwd(), "sample2.wav")
+    third = os.path.join(os.getcwd(), "sample3.wav")
+    fourth = os.path.join(os.getcwd(), "verify.wav")
+
+    # Play the first audio.
+
     mlask(end="\n")
     mlcat("", """
 The first sample audio...
@@ -143,7 +146,8 @@ The first sample audio...
     os.system(f'aplay {first} >/dev/null 2>&1')
     mlask(end="\n")
 
-    # Play the second audio
+    # Play the second audio.
+   
     mlcat("", """
 The second sample audio...
 """)
@@ -165,8 +169,9 @@ The fourth audio that needs to verify...
     mlask(end="\n")
 
     mlcat("Get the result", """\
-Now, we will insert the first three examples into our recognition system, and 
-use these samples to verify the fourth audio by its unique voice characteristics. 
+Now, we will insert the first three examples into our recognition system, and
+use these samples to verify the fourth audio by its unique voice
+characteristics.
 """)
 
     mlask(end="\n")
@@ -175,12 +180,13 @@ use these samples to verify the fourth audio by its unique voice characteristics
 else:
 
     mlask(begin="\n", end="\n")
-    mlcat("Speaker Recognition", """\
-This part is the act of confirming that a speaker matches a enrolled
-voice.\n
-Note: This service currently only supported in Azure Speech resources created in the
-westus region. If you want to use this service, please create another resource under
-westus region.
+    mlcat("Speaker Recognition", f"""\
+This service is currently (April 2021) only supported by the
+'westus' region. Your current region is '{location}'.
 
-Once created replace the key in ~/.mlhub/azspeech/private.txt.
+Create a Azure Speech resource for 'westus' if you want to use this
+service and to utilise the RECOGNISE command.
+
+Once the appropriate resource has been created replace the key
+in ~/.mlhub/azspeech/private.txt.
 """)
