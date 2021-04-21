@@ -175,5 +175,7 @@ if __name__ == "__main__":
     else:
         print("This service currently only supported in Azure Speech resources "
               "created in the westus region. \nIf you want to use this service, please "
-              "create another resource under westus region.", file=sys.stderr)
-        os.system("rm private.txt")
+              "create another resource under westus region.\n", 
+              "To update the key, edit ~/.mlhub/azspeech/private.txt.",
+              file=sys.stderr)
+        
