@@ -42,7 +42,7 @@ else:
 SERVICE = "Speech"
 KEY_FILE = os.path.join(os.getcwd(), "private.txt")
 
-speech_key, service_region = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
+key, region = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 
 # ----------------------------------------------------------------------
 # Get language code. "Original": is from Loale in Speech-to-text table.
@@ -54,14 +54,13 @@ speech_key, service_region = azkey(KEY_FILE, SERVICE, connect="location", verbos
 # ----------------------------------------------------------------------
 
 language_to_voice_map = {}
-dataframe_speech = pandas.read_csv("text-to-speech.txt",delimiter="\t")
+dataframe_speech = pandas.read_csv("text-to-speech.txt", delimiter="\t")
 
 for index, row in dataframe_speech.iterrows():
     if row[1] == "zh-HK":
         language_code = "yue"
     elif row[1] == "zh-CN":
         language_code = "zh-Hant"
-
     else:
         language_code = row[1][0:2]
 
@@ -74,7 +73,7 @@ for index, row in dataframe_speech.iterrows():
 
 def translate_speech_to_text(from_language, to_language, single_line):
     translation_config = speechsdk.translation.SpeechTranslationConfig(
-        subscription=speech_key, region=service_region)
+        subscription=key, region=region)
 
     translation_config.speech_recognition_language = from_language
     translation_config.add_target_language(to_language)
@@ -122,11 +121,12 @@ def synthesize_translations(to_language, single_line, result):
 
 
     if args.output:
-        audio_config = speechsdk.audio.AudioOutputConfig(filename=args.output)
-        speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+        audio_conf = speechsdk.audio.AudioOutputConfig(filename=args.output)
+        synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_conf,
+                                                  audio_config=audio_conf)
     else:
-        speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
-    speech_synthesizer.speak_text_async(translation).get()
+        synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_conf)
+    synthesizer.speak_text_async(translation).get()
 
 
 from_language = args.original
