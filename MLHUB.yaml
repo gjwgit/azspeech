@@ -3,16 +3,16 @@ meta:
   name         : azspeech
   title        : Azure Speech cognitive services on the cloud.
   keywords     : azure, speech synthesis, natural language processing, deep neural networks, speech to text, text to speech, transcription
-  version      : 4.2.0
+  version      : 4.2.1
   languages    : py
   license      : mit
+  private      : key, location
   author       : Graham.Williams@microsoft.com, Jingjing.Shi@anu.edu.au
   url          : https://github.com/gjwgit/azspeech
 dependencies:
   pip3:
     - azure-cognitiveservices-speech
     - pandas --no-build-isolation
-
   files:
     - https://mlhub.ai/empty.txt: private.txt
     - README.md
@@ -22,10 +22,10 @@ dependencies:
     - translate.py
     - recognise.py
     - text-to-speech.txt
-    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe01.wav
-    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe02.wav
-    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe03.wav
-    - quickstart_csharp_dotnet_speaker-recognition_helloworld_myVoiceIsMyPassportVerifyMe04.wav
+    - sample1.wav
+    - sample2.wav
+    - sample3.wav
+    - sample4.wav
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.
