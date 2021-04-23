@@ -72,14 +72,14 @@ for index, row in dataframe_speech.iterrows():
 
 
 def translate_speech_to_text(from_language, to_language, single_line):
-    translation_config = speechsdk.translation.SpeechTranslationConfig(
+    translation_conf = speechsdk.translation.SpeechTranslationConfig(
         subscription=key, region=region)
 
-    translation_config.speech_recognition_language = from_language
-    translation_config.add_target_language(to_language)
+    translation_conf.speech_recognition_language = from_language
+    translation_conf.add_target_language(to_language)
 
     recognizer = speechsdk.translation.TranslationRecognizer(
-        translation_config=translation_config)
+        translation_config=translation_conf)
 
     result = recognizer.recognize_once()
     synthesize_translations(to_language, single_line, result=result)
@@ -112,9 +112,9 @@ def synthesize_translations(to_language, single_line, result):
             sys.exit(1)
         print(f'Recognized: "{result.text}". Translated into "{to_language}": {translation}')
 
-    speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
+    speech_conf = speechsdk.SpeechConfig(subscription=key, region=region)
     try:
-        speech_config.speech_synthesis_voice_name = language_to_voice_map.get(to_language)
+        speech_conf.speech_synthesis_voice_name = language_to_voice_map.get(to_language)
     except:
         print("Error: This target language doesn't have speech.")
         sys.exit(1)
