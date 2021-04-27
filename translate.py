@@ -54,7 +54,7 @@ key, region = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 # ----------------------------------------------------------------------
 
 language_to_voice_map = {}
-dataframe_speech = pandas.read_csv("text-to-speech.txt", delimiter="\t")
+dataframe_speech = pandas.read_csv("data/text-to-speech.txt", delimiter="\t")
 
 for index, row in dataframe_speech.iterrows():
     if row[1] == "zh-HK":
