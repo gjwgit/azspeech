@@ -124,7 +124,7 @@ if RECOGNISE_FLAG:
 
     mlask(begin="\n", end="\n")
     mlcat("Speaker Recognition", """\
-A peaker recognition system will build a model of a speaker based on samples
+A speaker recognition system will build a model of a speaker based on samples
 of the speaker. The system can then confirm the speaker matches an enrolled
 voice.
 

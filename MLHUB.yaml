@@ -21,7 +21,7 @@ dependencies:
     - synthesize.py
     - translate.py
     - recognise.py
-    - text-to-speech.txt
+    - data/text-to-speech.txt
     - data/sample1.wav
     - data/sample2.wav
     - data/sample3.wav
