@@ -3,10 +3,8 @@ import argparse
 import requests
 import sys
 from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd, is_url
-import tempfile
+from mlhub.utils import get_cmd_cwd
 import wave
-from urllib.request import urlretrieve
 
 # -----------------------------------------------------------------------
 # Process the command line.
@@ -41,6 +39,7 @@ key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
 if location != "westus":
     RECOGNISE_FLAG = False
 
+
 def recognise(file, verify, single_line):
     # -----------------------------------------------------------------------
     # Create verification voice profile
@@ -55,9 +54,11 @@ def recognise(file, verify, single_line):
     path = 'speaker/verification/v2.0/text-dependent/profiles'
     create_profile_url = endpoint + path
     result = requests.post(create_profile_url, data="{\"locale\":\"en-US\"}", headers=create_headers)
+
     # -----------------------------------------------------------------------
     # Enroll the voice profile (3 samples)
     # -----------------------------------------------------------------------
+
     # If the location is not westus, profileId will not be found.
     try:
         profile_id = result.json()['profileId']
@@ -74,31 +75,6 @@ def recognise(file, verify, single_line):
 
     # Add three sample audios
     for i in range(0, 3):
-        # if is_url(args.file[i]):
-        #     response = requests.get(args.file[i])
-        #     if response.status_code != 200:
-        #         print(f"The URL does not appear to exist. Please check.\n{args.file[i]}")
-        #         sys.exit()
-        #     else:
-        #         if args.file[i].find('/'):
-        #             audio_name = args.file[i].rsplit('/', 1)[1]
-        #         else:
-        #             audio_name = "download.wav"
-        #
-        #         headers = {'User-Agent': 'Mozilla/5.0'}
-        #         with tempfile.TemporaryDirectory(dir="/tmp") as tmpdirname:
-        #             path = os.path.join(tmpdirname, audio_name)
-        #             urlretrieve(args.file[i], path)
-        #             # open(path, 'wb').write(r.content)
-        #             # print(path)
-        #             w = wave.open(path, "r")
-        #             # Convert audio file into binary format
-        #             binary_data = w.readframes(w.getnframes())
-        #             w.close()
-        #             result = requests.post(enroll_url, data=binary_data, headers=enroll_header)
-        #             print(result.json())
-        #
-        # else:
         path = os.path.join(get_cmd_cwd(), file[i])
 
         try:
@@ -175,7 +151,6 @@ if __name__ == "__main__":
     else:
         print("This service currently only supported in Azure Speech resources "
               "created in the westus region. \nIf you want to use this service, please "
-              "create another resource under westus region.\n", 
+              "create another resource under westus region.\n",
               "To update the key, edit ~/.mlhub/azspeech/private.txt.",
               file=sys.stderr)
-        
