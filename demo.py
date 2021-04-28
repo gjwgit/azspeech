@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Thursday 2021-04-22 07:35:52 AEST Graham Williams>
+# Time-stamp: <Wednesday 2021-04-28 10:35:49 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -37,10 +37,10 @@ KEY_FILE = os.path.join(os.getcwd(), "private.txt")
 
 key, location = azkey(KEY_FILE, SERVICE, connect="location")
 
-RECOGNISE_FLAG = True
+# Recognition is experimental and is only available at present
+# 20210428 from the westus data centre.
 
-if location != "westus":
-    RECOGNISE_FLAG = False
+RECOGNISE_FLAG = (location == "westus")
 
 # -----------------------------------------------------------------------
 # Set up a speech recognizer and synthesizer.
@@ -109,12 +109,12 @@ result = speech_synthesizer.speak_text_async(text).get()
 mlask(begin="\n", end="\n")
 
 mlcat("Speech Translation", """\
-This part is to translate English to other language. Now please speak
-English. This speech service will translate it to French.
+We can also translate English to other languages. Please speak some
+English and we'll use the speech service to translate it to French.
 """)
 
 mlask(end="\n", prompt="Wait 1 second to speak after pressing Enter")
-translate_speech_to_text("en-US", "fr", False)
+translate_speech_to_text("en-US", "fr", False, False, key, location)
 
 # -----------------------------------------------------------------------
 # Confirming that the speaker matches a known, or enrolled voice
@@ -132,49 +132,44 @@ For our demo we will hear three samples that enroll the speaker. A fourth
 audio is then tested against the enrolled speaker.
 """)
 
-    first = os.path.join(os.getcwd(), "sample1.wav")
-    second = os.path.join(os.getcwd(), "sample2.wav")
-    third = os.path.join(os.getcwd(), "sample3.wav")
-    fourth = os.path.join(os.getcwd(), "verify.wav")
+    first = os.path.join(os.getcwd(), "data/sample1.wav")
+    second = os.path.join(os.getcwd(), "data/sample2.wav")
+    third = os.path.join(os.getcwd(), "data/sample3.wav")
+    fourth = os.path.join(os.getcwd(), "data/verify.wav")
 
     # Play the first audio.
 
     mlask(end="\n")
-    mlcat("", """
-The first sample audio...
+    mlcat("", """The first sample audio...
 """)
     os.system(f'aplay {first} >/dev/null 2>&1')
     mlask(end="\n")
 
     # Play the second audio.
-   
-    mlcat("", """
-The second sample audio...
+    
+    mlcat("", """The second sample audio...
 """)
     os.system(f'aplay {second} >/dev/null 2>&1')
     mlask(end="\n")
 
     # Play the third audio
-    mlcat("", """
-The third sample audio...
+    mlcat("", """The third sample audio...
 """)
     os.system(f'aplay {third} >/dev/null 2>&1')
-    mlask(end="\n")
 
-    # Play the fourth audio
-    mlcat("", """
-The fourth audio that needs to verify...
-""")
-    os.system(f'aplay {fourth} >/dev/null 2>&1')
-    mlask(end="\n")
-
-    mlcat("Get the result", """\
+    mlcat("Verify the Speaker", """\
 Now, we will insert the first three examples into our recognition system, and
 use these samples to verify the fourth audio by its unique voice
 characteristics.
 """)
-
     mlask(end="\n")
+
+    # Play the fourth audio.
+
+    mlcat("", """The fourth audio to be verified...
+""")
+    os.system(f'aplay {fourth} >/dev/null 2>&1')
+
     recognise([first, second, third], fourth, False)
 
 else:
@@ -184,7 +179,7 @@ else:
 This service is currently (April 2021) only supported by the
 'westus' region. Your current region is '{location}'.
 
-Create a Azure Speech resource for 'westus' if you want to use this
+You can create an Azure Speech resource for 'westus' if you want to use this
 service and to utilise the RECOGNISE command.
 
 Once the appropriate resource has been created replace the key
