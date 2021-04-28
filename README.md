@@ -40,7 +40,7 @@ $ ml transcribe azspeech --file=harvard.wav
 $ ml translate azspeech --target=fr
 $ ml translate azspeech --original=zh-CN --target=fr --ouput=spoken.wav
 
-$ ml recognise azspeech --file=sample.wav --file=sample2.wav --file=sample3.wav --verify=verify.wav
+$ ml recognise azspeech --file=sample1.wav --file=sample2.wav --file=sample3.wav --verify=verify.wav
 ```
 
 ## Usage
