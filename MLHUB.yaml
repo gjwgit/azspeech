@@ -21,11 +21,11 @@ dependencies:
     - synthesize.py
     - translate.py
     - recognise.py
-    - data/text-to-speech.txt
-    - data/sample1.wav
-    - data/sample2.wav
-    - data/sample3.wav
-    - data/verify.wav
+    - data/text-to-speech.txt: data/
+    - data/sample1.wav: data/
+    - data/sample2.wav: data/
+    - data/sample3.wav: data/
+    - data/verify.wav: data/
 commands:
   demo       : Demonstrate speech capabilities.
   transcribe : Generate text from microphone or wav file. Supports --file.
