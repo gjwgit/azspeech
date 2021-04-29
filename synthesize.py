@@ -21,8 +21,7 @@ import argparse
 import azure.cognitiveservices.speech as speechsdk
 from azure.cognitiveservices.speech.audio import AudioOutputConfig
 
-from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd
+from mlhub.utils import get_cmd_cwd, get_private
 
 # -----------------------------------------------------------------------
 # Process the command line.
@@ -57,10 +56,13 @@ args = option_parser.parse_args()
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE = "Speech"
-KEY_FILE = os.path.join(os.getcwd(), "private.txt")
+PRIVATE_FILE = "private.json"
 
-key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
+path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+key = path["key"]
+
+location = path["location"]
 
 # ----------------------------------------------------------------------
 # Read the text to be translated.
