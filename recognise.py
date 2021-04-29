@@ -2,8 +2,7 @@ import os
 import argparse
 import requests
 import sys
-from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd
+from mlhub.utils import get_cmd_cwd, get_private
 import wave
 
 # -----------------------------------------------------------------------
@@ -25,22 +24,8 @@ option_parser.add_argument(
 
 args = option_parser.parse_args()
 
-# ----------------------------------------------------------------------
-# Request subscription key and location from user.
-# ----------------------------------------------------------------------
 
-SERVICE = "Speech"
-KEY_FILE = os.path.join(os.getcwd(), "private.txt")
-
-RECOGNISE_FLAG = True
-
-key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
-
-if location != "westus":
-    RECOGNISE_FLAG = False
-
-
-def recognise(file, verify, single_line):
+def recognise(file, verify, single_line, key):
     # -----------------------------------------------------------------------
     # Create verification voice profile
     # -----------------------------------------------------------------------
@@ -144,13 +129,41 @@ def recognise(file, verify, single_line):
 
 
 if __name__ == "__main__":
+
+    # ----------------------------------------------------------------------
+    # Request subscription key and location from user.
+    # ----------------------------------------------------------------------
+
+    PRIVATE_FILE = "private.json"
+
+    path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+    private_dic = get_private(path, "azspeech")
+
+    key = private_dic["key"]
+    location = private_dic["location"]
+
+    RECOGNISE_FLAG = True
+
+    if location != "westus":
+        RECOGNISE_FLAG = False
+
     sample = args.file
     target = args.verify
+
+    # ----------------------------------------------------------------------
+    # Run RECOGNISE
+    # ----------------------------------------------------------------------
+
     if RECOGNISE_FLAG:
-        recognise(sample, target, True)
+        try:
+            recognise(sample, target, True, key)
+        except Exception as e:
+            print("The Azure subscription key is not correct. Please run ml configure bing to update your key.", file=sys.stderr)
+            sys.exit(1)
     else:
         print("This service currently only supported in Azure Speech resources "
               "created in the westus region. \nIf you want to use this service, please "
               "create another resource under westus region.\n",
-              "To update the key, edit ~/.mlhub/azspeech/private.txt.",
+              "To update the key and location, please run ml configure azspeech.",
               file=sys.stderr)
