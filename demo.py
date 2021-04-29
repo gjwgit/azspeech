@@ -37,8 +37,7 @@ PRIVATE_FILE = "private.json"
 
 path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
-# private_dic = get_private(path, "azspeech")
-private_dic = get_private("/Users/Jingjing/.mlhub/azspeech/private.json", "azspeech")
+private_dic = get_private(path, "azspeech")
 
 key = private_dic["key"]
 
