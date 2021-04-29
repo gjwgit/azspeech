@@ -5,25 +5,6 @@ import sys
 from mlhub.utils import get_cmd_cwd, get_private
 import wave
 
-# -----------------------------------------------------------------------
-# Process the command line.
-# -----------------------------------------------------------------------
-
-option_parser = argparse.ArgumentParser(add_help=False)
-
-option_parser.add_argument(
-    '--file',
-    "-f",
-    action='append',
-    help='wav input file')
-
-option_parser.add_argument(
-    '--verify',
-    "-v",
-    help='the wav file which wants to verify')
-
-args = option_parser.parse_args()
-
 
 def recognise(file, verify, single_line, key):
     # -----------------------------------------------------------------------
@@ -132,6 +113,25 @@ def recognise(file, verify, single_line, key):
 
 
 if __name__ == "__main__":
+
+    # -----------------------------------------------------------------------
+    # Process the command line.
+    # -----------------------------------------------------------------------
+
+    option_parser = argparse.ArgumentParser(add_help=False)
+
+    option_parser.add_argument(
+        '--file',
+        "-f",
+        action='append',
+        help='wav input file')
+
+    option_parser.add_argument(
+        '--verify',
+        "-v",
+        help='the wav file which wants to verify')
+
+    args = option_parser.parse_args()
 
     # ----------------------------------------------------------------------
     # Request subscription key and location from user.

@@ -1,11 +1,11 @@
 # Import the required libraries.
-
 import os
 import azure.cognitiveservices.speech as speechsdk
 import argparse
-from mlhub.pkg import azkey
 import pandas
 import sys
+from mlhub.utils import get_private
+
 
 # ----------------------------------------------------------------------
 # Translate the speech to another language speech
@@ -37,9 +37,11 @@ def synthesize_translations(to_language, single_line, result, output, key, regio
             print(f"Error:{e}.")
             print("Error: wrong original or target language code. For original language code, please choose one from "
                   "Loale in Speech-to-text table"
-                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-to-text).\n"
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
+                  "-to-text).\n "
                   "For target language code, please choose one from Language Code in Text languages table"
-                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-translation)")
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
+                  "-translation)")
             sys.exit(1)
         print(f'Translated into "{to_language}": {translation}')
     else:
@@ -49,9 +51,11 @@ def synthesize_translations(to_language, single_line, result, output, key, regio
             print(f"Error:{e}.")
             print("Error: wrong original or target language code. For original language code, please choose one from "
                   "Loale in Speech-to-text table"
-                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-to-text).\n"
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
+                  "-to-text).\n "
                   "For target language code, please choose one from Language Code in Text languages table"
-                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech-translation)")
+                  "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
+                  "-translation)")
             sys.exit(1)
         print(f'Recognized: "{result.text}". Translated into "{to_language}": {translation}')
 
@@ -79,14 +83,12 @@ def synthesize_translations(to_language, single_line, result, output, key, regio
 
         language_to_voice_map[language_code] = row[3]
 
-
     speech_conf = speechsdk.SpeechConfig(subscription=key, region=region)
     try:
         speech_conf.speech_synthesis_voice_name = language_to_voice_map.get(to_language)
     except:
         print(f"Error: This target language ({to_language}) doesn't have speech.")
         sys.exit(1)
-
 
     if output:
         audio_conf = speechsdk.audio.AudioOutputConfig(filename=output)
@@ -109,7 +111,7 @@ if __name__ == "__main__":
     # required. See
 
     option_parser.add_argument(
-        '--original', "-f",
+        '--original', "-f", default="en-US",
         help='original language')
 
     option_parser.add_argument(
@@ -134,10 +136,15 @@ if __name__ == "__main__":
     # Request subscription key and location from user.
     # ----------------------------------------------------------------------
 
-    SERVICE = "Speech"
-    KEY_FILE = os.path.join(os.getcwd(), "private.txt")
+    PRIVATE_FILE = "private.json"
 
-    key, region = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
+    path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+    # private_dic = get_private(path, "azspeech")
+    private_dic = get_private("/Users/Jingjing/.mlhub/azspeech/private.json", "azspeech")
+
+    key = private_dic["key"]
+
+    region = private_dic["location"]
 
     translate_speech_to_text(from_language, to_language, True, args.output, key, region)
-

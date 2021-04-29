@@ -60,9 +60,11 @@ PRIVATE_FILE = "private.json"
 
 path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
-key = path["key"]
+private_dic = get_private(path, "azspeech")
 
-location = path["location"]
+key = private_dic["key"]
+
+location = private_dic["location"]
 
 # ----------------------------------------------------------------------
 # Read the text to be translated.

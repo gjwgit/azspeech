@@ -22,8 +22,7 @@ import textwrap
 
 import azure.cognitiveservices.speech as speechsdk
 
-from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd
+from mlhub.utils import get_cmd_cwd, get_private
 
 #-----------------------------------------------------------------------
 # Process the command line
@@ -44,10 +43,15 @@ args = option_parser.parse_args()
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE   = "Speech"
-KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
+PRIVATE_FILE = "private.json"
 
-key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
+path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+private_dic = get_private(path, "azspeech")
+
+key = private_dic["key"]
+
+location = private_dic["location"]
 
 #-----------------------------------------------------------------------
 # Set up a speech configuration.

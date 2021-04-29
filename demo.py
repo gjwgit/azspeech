@@ -19,7 +19,8 @@ from translate import translate_speech_to_text
 from recognise import recognise
 import azure.cognitiveservices.speech as speechsdk
 
-from mlhub.pkg import azkey, mlask, mlcat
+from mlhub.pkg import mlask, mlcat
+from mlhub.utils import get_private
 
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
@@ -32,10 +33,16 @@ Speaker Recognition capabilities.
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE = "Speech"
-KEY_FILE = os.path.join(os.getcwd(), "private.txt")
+PRIVATE_FILE = "private.json"
 
-key, location = azkey(KEY_FILE, SERVICE, connect="location")
+path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+# private_dic = get_private(path, "azspeech")
+private_dic = get_private("/Users/Jingjing/.mlhub/azspeech/private.json", "azspeech")
+
+key = private_dic["key"]
+
+location = private_dic["location"]
 
 # Recognition is experimental and is only available at present
 # 20210428 from the westus data centre.
@@ -170,7 +177,7 @@ characteristics.
 """)
     os.system(f'aplay {fourth} >/dev/null 2>&1')
 
-    recognise([first, second, third], fourth, False)
+    recognise([first, second, third], fourth, False, key)
 
 else:
 
