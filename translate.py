@@ -24,6 +24,11 @@ def translate_speech_to_text(from_language, to_language, single_line,
         translation_config=translation_conf)
 
     result = recognizer.recognize_once()
+
+    if result.text == "":
+        print("The Azure subscription key is not correct. Please run ml configure azspeech to upload your key.")
+        sys.exit(1)
+
     synthesize_translations(to_language, single_line, result, output,
                             key, region)
 
