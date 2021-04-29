@@ -93,6 +93,8 @@ elif result.reason == speechsdk.ResultReason.Canceled:
     print("Speech Recognition canceled: {}".format(cancellation_details.reason))
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Error details: {}".format(cancellation_details.error_details))
+        print("To upload your key, please run ml configure azspeech.")
+        sys.exit(1)
 
 mlask(begin="\n", end="\n")
 
@@ -110,6 +112,9 @@ text = input()
 # to hear the synthesized speech.
 
 result = speech_synthesizer.speak_text_async(text).get()
+if str(result.reason) == "ResultReason.Canceled":
+    print("The Azure subscription key is not correct. Please run ml configure azspeech to upload your key.")
+    sys.exit(1)
 
 # -----------------------------------------------------------------------
 # Translate language to other language
