@@ -1,16 +1,15 @@
 # Import the required libraries.
-import os
-import azure.cognitiveservices.speech as speechsdk
+
+from mlhub.utils import get_private
 import argparse
+import azure.cognitiveservices.speech as speechsdk
+import os
 import pandas
 import sys
-from mlhub.utils import get_private
-
 
 # ----------------------------------------------------------------------
 # Translate the speech to another language speech
 # ----------------------------------------------------------------------
-
 
 def translate_speech_to_text(from_language, to_language, single_line,
                              output, key, region):
@@ -146,6 +145,10 @@ if __name__ == "__main__":
     path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
     private_dic = get_private(path, "azspeech")
+
+    if "key" not in private_dic:
+        print("There is no key in private.json. Please run ml configure azspeech to upload your key.", file=sys.stderr)
+        sys.exit(1)
 
     key = private_dic["key"]
 

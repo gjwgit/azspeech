@@ -13,14 +13,13 @@
 # ----------------------------------------------------------------------
 
 # Import the required libraries.
-
-import os
-from translate import translate_speech_to_text
-from recognise import recognise
-import azure.cognitiveservices.speech as speechsdk
-
 from mlhub.pkg import mlask, mlcat
 from mlhub.utils import get_private
+from recognise import recognise
+from translate import translate_speech_to_text
+import azure.cognitiveservices.speech as speechsdk
+import os
+import sys
 
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
@@ -38,6 +37,10 @@ PRIVATE_FILE = "private.json"
 path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
 private_dic = get_private(path, "azspeech")
+
+if "key" not in private_dic:
+    print("There is no key in private.json. Please run ml configure azspeech to upload your key.", file=sys.stderr)
+    sys.exit(1)
 
 key = private_dic["key"]
 
