@@ -48,8 +48,11 @@ def recognise(file, verify, single_line, key):
     try:
         profile_id = result.json()['profileId']
     except:
-        error = result.json()['error']['message']
-        print(f"Error: {error}")
+        if result.json()['error']['code']=='401':
+            print("The Azure subscription key is not correct, please run ml configure azspeech to update your key. ")
+        else:
+            error = result.json()['error']['message']
+            print(f"Error: {error}")
         sys.exit(1)
 
     enroll_url = create_profile_url + "/" + profile_id + "/enrollments"
@@ -156,11 +159,7 @@ if __name__ == "__main__":
     # ----------------------------------------------------------------------
 
     if RECOGNISE_FLAG:
-        try:
-            recognise(sample, target, True, key)
-        except Exception as e:
-            print("The Azure subscription key is not correct. Please run ml configure bing to update your key.", file=sys.stderr)
-            sys.exit(1)
+        recognise(sample, target, True, key)
     else:
         print("This service currently only supported in Azure Speech resources "
               "created in the westus region. \nIf you want to use this service, please "
