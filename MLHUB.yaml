@@ -14,7 +14,6 @@ dependencies:
     - azure-cognitiveservices-speech
     - pandas --no-build-isolation
   files:
-    - https://mlhub.ai/empty.txt: private.txt
     - README.md
     - demo.py
     - transcribe.py
