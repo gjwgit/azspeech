@@ -30,10 +30,10 @@ def recognise(file, verify, single_line, key):
         profile_id = result.json()['profileId']
     except:
         if result.json()['error']['code']=='401':
-            print("The Azure subscription key is not correct, please run ml configure azspeech to update your key. ")
+            print("The Azure subscription key is not correct, please run ml configure azspeech to update your key. ",  file=sys.stderr)
         else:
             error = result.json()['error']['message']
-            print(f"Error: {error}")
+            print(f"Error: {error}",  file=sys.stderr)
         sys.exit(1)
 
     enroll_url = create_profile_url + "/" + profile_id + "/enrollments"
@@ -49,7 +49,7 @@ def recognise(file, verify, single_line, key):
         try:
             w = wave.open(path, "rb")
         except FileNotFoundError:
-            print(f"Error: wrong sample file location. \n{file[i]}")
+            print(f"Error: wrong sample file location. \n{file[i]}", file=sys.stderr)
             sys.exit(1)
 
         # Convert audio file into binary format
@@ -61,7 +61,7 @@ def recognise(file, verify, single_line, key):
         try:
             if result.json()['error']['message']:
                 error = result.json()['error']['message']
-                print(f"The sample audio file {file[i]} error: {error}")
+                print(f"The sample audio file {file[i]} error: {error}", file=sys.stderr)
         except:
             pass
         else:
@@ -82,7 +82,7 @@ def recognise(file, verify, single_line, key):
     try:
         w = wave.open(path, "rb")
     except FileNotFoundError:
-        print(f"Error: wrong verification file location.\n{verify}")
+        print(f"Error: wrong verification file location.\n{verify}", file=sys.stderr)
         sys.exit(1)
 
     # Convert audio file into binary format
@@ -98,7 +98,7 @@ def recognise(file, verify, single_line, key):
             print(result.json()['recognitionResult'] + ", " + str(result.json()['score']))
     except:
         error = result.json()['error']['message']
-        print(f"Error: {error}")
+        print(f"Error: {error}", file=sys.stderr)
         sys.exit(1)
 
     # -----------------------------------------------------------------------

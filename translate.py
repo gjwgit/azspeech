@@ -25,7 +25,7 @@ def translate_speech_to_text(from_language, to_language, single_line,
     result = recognizer.recognize_once()
 
     if result.text == "":
-        print("The Azure subscription key is not correct. Please run ml configure azspeech to upload your key.")
+        print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
         sys.exit(1)
 
     synthesize_translations(to_language, single_line, result, output,
@@ -38,28 +38,28 @@ def synthesize_translations(to_language, single_line, result, output, key, regio
         try:
             translation = result.translations[to_language]
         except Exception as e:
-            print(f"Error:{e}.")
+            print(f"Error:{e}.", file=sys.stderr)
             print("Error: wrong original or target language code. For original language code, please choose one from "
                   "Loale in Speech-to-text table"
                   "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
                   "-to-text).\n "
                   "For target language code, please choose one from Language Code in Text languages table"
                   "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
-                  "-translation)")
+                  "-translation)", file=sys.stderr)
             sys.exit(1)
         print(f'Translated into "{to_language}": {translation}')
     else:
         try:
             translation = result.translations[to_language]
         except Exception as e:
-            print(f"Error:{e}.")
+            print(f"Error:{e}.", file=sys.stderr)
             print("Error: wrong original or target language code. For original language code, please choose one from "
                   "Loale in Speech-to-text table"
                   "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
                   "-to-text).\n "
                   "For target language code, please choose one from Language Code in Text languages table"
                   "(https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#speech"
-                  "-translation)")
+                  "-translation)", file=sys.stderr)
             sys.exit(1)
         print(f'Recognized: "{result.text}". Translated into "{to_language}": {translation}')
 
@@ -91,7 +91,7 @@ def synthesize_translations(to_language, single_line, result, output, key, regio
     try:
         speech_conf.speech_synthesis_voice_name = language_to_voice_map.get(to_language)
     except:
-        print(f"Error: This target language ({to_language}) doesn't have speech.")
+        print(f"Error: This target language ({to_language}) doesn't have speech.", file=sys.stderr)
         sys.exit(1)
 
     if output:

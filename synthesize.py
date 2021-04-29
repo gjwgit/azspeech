@@ -116,7 +116,7 @@ if len(text):
     for sentence in text:
         result = speech_synthesizer.speak_text_async(sentence).get()
         if str(result.reason) == "ResultReason.Canceled":
-            print("The Azure subscription key is not correct. Please run ml configure azspeech to upload your key.")
+            print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
             sys.exit(1)
 else:
     if sys.stdin.isatty():
@@ -126,7 +126,7 @@ else:
                     break
                 result = speech_synthesizer.speak_text_async(line).get()
                 if str(result.reason) == "ResultReason.Canceled":
-                    print("The Azure subscription key is not correct. Please run ml configure azspeech to upload your key.")
+                    print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
                     sys.exit(1)
         except KeyboardInterrupt:
             pass
@@ -134,5 +134,5 @@ else:
         for line in sys.stdin.readlines():
             result = speech_synthesizer.speak_text_async(line).get()
             if str(result.reason) == "ResultReason.Canceled":
-                print("The Azure subscription key is not correct. Please run ml configure azspeech to upload your key.")
+                print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
                 sys.exit(1)

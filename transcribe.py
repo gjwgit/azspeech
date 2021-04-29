@@ -143,7 +143,7 @@ else:
         print("Speech Recognition canceled: {}".format(cancellation_details.reason))
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             print("Error details: {}".format(cancellation_details.error_details))
-            print("To upload your key, please run ml configure azspeech.")
+            print("To update your key, please run ml configure azspeech.", file=sys.stderr)
             sys.exit(1)
 
 
