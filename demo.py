@@ -197,5 +197,5 @@ You can create an Azure Speech resource for 'westus' if you want to use this
 service and to utilise the RECOGNISE command.
 
 Once the appropriate resource has been created replace the key
-in ~/.mlhub/azspeech/private.txt.
+by running ml configure azspeech.
 """)
