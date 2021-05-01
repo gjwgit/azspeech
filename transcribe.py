@@ -14,16 +14,13 @@
 
 # Import the required libraries.
 
+from mlhub.utils import get_cmd_cwd, get_private
+import argparse
+import azure.cognitiveservices.speech as speechsdk
 import os
 import sys
-import time
-import argparse
 import textwrap
-
-import azure.cognitiveservices.speech as speechsdk
-
-from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd
+import time
 
 #-----------------------------------------------------------------------
 # Process the command line
@@ -44,10 +41,19 @@ args = option_parser.parse_args()
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE   = "Speech"
-KEY_FILE  = os.path.join(os.getcwd(), "private.txt")
+PRIVATE_FILE = "private.json"
 
-key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
+path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+private_dic = get_private(path, "azspeech")
+
+if "key" not in private_dic:
+    print("There is no key in private.json. Please run ml configure azspeech to upload your key.", file=sys.stderr)
+    sys.exit(1)
+
+key = private_dic["key"]
+
+location = private_dic["location"]
 
 #-----------------------------------------------------------------------
 # Set up a speech configuration.
@@ -137,6 +143,8 @@ else:
         print("Speech Recognition canceled: {}".format(cancellation_details.reason))
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             print("Error details: {}".format(cancellation_details.error_details))
+            print("To update your key, please run ml configure azspeech.", file=sys.stderr)
+            sys.exit(1)
 
 
 

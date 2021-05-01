@@ -6,7 +6,7 @@ meta:
   version      : 4.2.4
   languages    : py
   license      : mit
-  private      : key, location
+  private      : Azure subscription, key*, location
   author       : Graham.Williams@togaware.com, Jingjing.Shi@anu.edu.au
   url          : https://github.com/gjwgit/azspeech
 dependencies:
@@ -14,7 +14,6 @@ dependencies:
     - azure-cognitiveservices-speech
     - pandas --no-build-isolation
   files:
-    - https://mlhub.ai/empty.txt: private.txt
     - README.md
     - demo.py
     - transcribe.py

@@ -21,8 +21,7 @@ import argparse
 import azure.cognitiveservices.speech as speechsdk
 from azure.cognitiveservices.speech.audio import AudioOutputConfig
 
-from mlhub.pkg import azkey
-from mlhub.utils import get_cmd_cwd
+from mlhub.utils import get_cmd_cwd, get_private
 
 # -----------------------------------------------------------------------
 # Process the command line.
@@ -57,10 +56,15 @@ args = option_parser.parse_args()
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE = "Speech"
-KEY_FILE = os.path.join(os.getcwd(), "private.txt")
+PRIVATE_FILE = "private.json"
 
-key, location = azkey(KEY_FILE, SERVICE, connect="location", verbose=False)
+path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+private_dic = get_private(path, "azspeech")
+
+key = private_dic["key"]
+
+location = private_dic["location"]
 
 # ----------------------------------------------------------------------
 # Read the text to be translated.
@@ -111,6 +115,9 @@ else:
 if len(text):
     for sentence in text:
         result = speech_synthesizer.speak_text_async(sentence).get()
+        if str(result.reason) == "ResultReason.Canceled":
+            print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+            sys.exit(1)
 else:
     if sys.stdin.isatty():
         try:
@@ -118,8 +125,14 @@ else:
                 if line == "\n":
                     break
                 result = speech_synthesizer.speak_text_async(line).get()
+                if str(result.reason) == "ResultReason.Canceled":
+                    print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+                    sys.exit(1)
         except KeyboardInterrupt:
             pass
     else:
         for line in sys.stdin.readlines():
             result = speech_synthesizer.speak_text_async(line).get()
+            if str(result.reason) == "ResultReason.Canceled":
+                print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+                sys.exit(1)

@@ -13,13 +13,13 @@
 # ----------------------------------------------------------------------
 
 # Import the required libraries.
-
-import os
-from translate import translate_speech_to_text
+from mlhub.pkg import mlask, mlcat
+from mlhub.utils import get_private
 from recognise import recognise
+from translate import translate_speech_to_text
 import azure.cognitiveservices.speech as speechsdk
-
-from mlhub.pkg import azkey, mlask, mlcat
+import os
+import sys
 
 mlcat("Speech Services", """\
 Welcome to a demo of the pre-built models for Speech provided
@@ -32,10 +32,19 @@ Speaker Recognition capabilities.
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-SERVICE = "Speech"
-KEY_FILE = os.path.join(os.getcwd(), "private.txt")
+PRIVATE_FILE = "private.json"
 
-key, location = azkey(KEY_FILE, SERVICE, connect="location")
+path = os.path.join(os.getcwd(), PRIVATE_FILE)
+
+private_dic = get_private(path, "azspeech")
+
+if "key" not in private_dic:
+    print("There is no key in private.json. Please run ml configure azspeech to upload your key.", file=sys.stderr)
+    sys.exit(1)
+
+key = private_dic["key"]
+
+location = private_dic["location"]
 
 # Recognition is experimental and is only available at present
 # 20210428 from the westus data centre.
@@ -84,6 +93,8 @@ elif result.reason == speechsdk.ResultReason.Canceled:
     print("Speech Recognition canceled: {}".format(cancellation_details.reason))
     if cancellation_details.reason == speechsdk.CancellationReason.Error:
         print("Error details: {}".format(cancellation_details.error_details))
+        print("To update your key, please run ml configure azspeech.", file=sys.stderr)
+        sys.exit(1)
 
 mlask(begin="\n", end="\n")
 
@@ -101,6 +112,9 @@ text = input()
 # to hear the synthesized speech.
 
 result = speech_synthesizer.speak_text_async(text).get()
+if str(result.reason) == "ResultReason.Canceled":
+    print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+    sys.exit(1)
 
 # -----------------------------------------------------------------------
 # Translate language to other language
@@ -170,7 +184,7 @@ characteristics.
 """)
     os.system(f'aplay {fourth} >/dev/null 2>&1')
 
-    recognise([first, second, third], fourth, False)
+    recognise([first, second, third], fourth, False, key)
 
 else:
 
@@ -183,5 +197,5 @@ You can create an Azure Speech resource for 'westus' if you want to use this
 service and to utilise the RECOGNISE command.
 
 Once the appropriate resource has been created replace the key
-in ~/.mlhub/azspeech/private.txt.
+by running ml configure azspeech.
 """)
