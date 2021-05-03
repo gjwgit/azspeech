@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Monday 2021-05-03 13:55:07 AEST Graham Williams>
+# Time-stamp: <Monday 2021-05-03 14:14:52 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -103,10 +103,12 @@ mlask(begin="\n", end="\n")
 # -----------------------------------------------------------------------
 
 mlcat("Text to Speech", """\
-Now type text to be spoken. When Enter is pressed you will hear the result.
+Now we will convert that same text back to speech.
 """)
 
-text = input()
+text = result.text
+
+mlask(end="\n")
 
 # Synthesize the text to speech. When the following line is run expect
 # to hear the synthesized speech.
@@ -119,8 +121,6 @@ if str(result.reason) == "ResultReason.Canceled":
 # -----------------------------------------------------------------------
 # Translate language to other language
 # -----------------------------------------------------------------------
-
-mlask(begin="\n", end="\n")
 
 mlcat("Speech Translation", """\
 We can also translate English to other languages. Please speak some
@@ -183,9 +183,8 @@ characteristics.
     mlcat("", """The fourth audio to be verified...
 """)
     os.system(f'aplay {fourth} >/dev/null 2>&1')
-
     recognise([first, second, third], fourth, False, key)
-
+    print("")
 else:
 
     mlask(begin="\n", end="\n")
