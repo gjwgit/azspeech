@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Wednesday 2021-04-28 10:35:49 AEST Graham Williams>
+# Time-stamp: <Monday 2021-05-03 13:55:07 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -172,7 +172,7 @@ audio is then tested against the enrolled speaker.
     os.system(f'aplay {third} >/dev/null 2>&1')
 
     mlcat("Verify the Speaker", """\
-Now, we will insert the first three examples into our recognition system, and
+Now, we will insert the first three examples into the recognition system, and
 use these samples to verify the fourth audio by its unique voice
 characteristics.
 """)
