@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Thursday 2020-08-06 14:22:36 AEST Graham Williams>
+# Time-stamp: <Monday 2021-05-03 13:59:17 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under GPLv3.
@@ -32,7 +32,7 @@ option_parser = argparse.ArgumentParser(add_help=False)
 # required. See 
 
 option_parser.add_argument(
-    '--file', "-f",
+    '--input', "-i",
     help='wav input file')
 
 args = option_parser.parse_args()
@@ -65,8 +65,8 @@ speech_config     = speechsdk.SpeechConfig(subscription=key, region=location)
 # Transcribe file or from microphone.
 #-----------------------------------------------------------------------
 
-if args.file:
-    path = os.path.join(get_cmd_cwd(), args.file)
+if args.input:
+    path = os.path.join(get_cmd_cwd(), args.input)
     
     # Create a callback to terminate the transcription once the full
     # audio has been transcribed.

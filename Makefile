@@ -8,7 +8,16 @@
 #
 ########################################################################
 
-# Include standard Makefile templates.
+# App version numbers
+#   Major release
+#   Minor update
+#   Trivial update or bug fix
+
+APP=azspeech
+DATE=$(shell date +%Y-%m-%d)
+
+########################################################################
+# Supported modules.
 
 INC_BASE    = $(HOME)/.local/share/make
 INC_PANDOC  = $(INC_BASE)/pandoc.mk
@@ -29,3 +38,20 @@ ifneq ("$(wildcard $(INC_CLEAN))","")
   include $(INC_CLEAN)
 endif
 
+define HELP
+$(APP):
+
+  install	Install locally over package install in ~/.mlhub/$(APP)
+  private	Install private.json to ~/.mlhub/$(APP)
+
+endef
+export HELP
+
+help::
+	@echo "$$HELP"
+
+install:
+	install demo.py transcribe.py synthesize.py translate.py recognise.py $(HOME)/.mlhub/$(APP)/
+
+private:
+	install private.json $(HOME)/.mlhub/$(APP)/

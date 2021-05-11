@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Wednesday 2021-04-21 10:47:46 AEST Graham Williams>
+# Time-stamp: <Monday 2021-05-03 13:58:22 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under the MIT License.
@@ -35,7 +35,7 @@ option_parser.add_argument(
     help='sentence to speek')
 
 option_parser.add_argument(
-    '--file', '-f',
+    '--input', '-i',
     help='path to a text file to speek')
 
 option_parser.add_argument(
@@ -75,8 +75,8 @@ location = private_dic["Azure subscription"]["location"]
 # ----------------------------------------------------------------------
 
 text = ""
-if args.file:
-    text = open(os.path.join(get_cmd_cwd(), args.file), "r").read()
+if args.input:
+    text = open(os.path.join(get_cmd_cwd(), args.input), "r").read()
 elif args.sentence:
     text = " ".join(args.sentence)
 

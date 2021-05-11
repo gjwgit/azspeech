@@ -1,4 +1,8 @@
-# Azure Speech Capabilities
+# Azure Speech
+
+See the [MLHub Survival
+Guide](https://survivor.togaware.com/mlhub/azspeech.html) for
+documentation.
 
 This [MLHub](https://mlhub.ai) package provides a demonstration and
 command line tools built from the pre-built Speech models provided
@@ -31,11 +35,11 @@ The azspeech source code is available from
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
 
 $ ml synthesize azspeech Welcome my friend, welcome to the machine.
-$ ml synthesize azspeech --file=ai.txt
+$ ml synthesize azspeech --input=ai.txt
 $ ml synthesize azspeech --output=spoken.wav
 
 $ ml transcribe azspeech
-$ ml transcribe azspeech --file=harvard.wav
+$ ml transcribe azspeech --input=harvard.wav
 
 $ ml translate azspeech --target=fr
 $ ml translate azspeech --original=zh-CN --target=fr --ouput=spoken.wav
