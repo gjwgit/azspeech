@@ -146,12 +146,12 @@ if __name__ == "__main__":
 
     private_dic = get_private(path, "azspeech")
 
-    if "key" not in private_dic:
+    if "key" not in private_dic["Azure subscription"]:
         print("There is no key in private.json. Please run ml configure azspeech to upload your key.", file=sys.stderr)
         sys.exit(1)
 
-    key = private_dic["key"]
+    key = private_dic["Azure subscription"]["key"]
 
-    region = private_dic["location"]
+    region = private_dic["Azure subscription"]["location"]
 
     translate_speech_to_text(from_language, to_language, True, args.output, key, region)

@@ -8,7 +8,6 @@ meta:
   license      : mit
   private      :
     Azure subscription : key*, location
-    Google speech      : key*, Google location
   author       : Graham.Williams@togaware.com, Jingjing.Shi@anu.edu.au
   url          : https://github.com/gjwgit/azspeech
 dependencies:
