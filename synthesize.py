@@ -62,9 +62,9 @@ path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
 private_dic = get_private(path, "azspeech")
 
-key = private_dic["key"]
+key = private_dic["Azure subscription"]["key"]
 
-location = private_dic["location"]
+location = private_dic["Azure subscription"]["location"]
 
 # ----------------------------------------------------------------------
 # Read the text to be translated.
