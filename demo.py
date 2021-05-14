@@ -38,10 +38,6 @@ path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
 private_dic = get_private(path, "azspeech")
 
-if "key" not in private_dic["Azure subscription"]:
-    print("There is no key in private.json. Please run ml configure azspeech to upload your key.", file=sys.stderr)
-    sys.exit(1)
-
 key = private_dic["Azure subscription"]["key"]
 
 location = private_dic["Azure subscription"]["location"]
