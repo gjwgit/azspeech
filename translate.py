@@ -25,7 +25,7 @@ def translate_speech_to_text(from_language, to_language, single_line,
     result = recognizer.recognize_once()
 
     if result.text == "":
-        print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+        print("The Azure Speech key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
         sys.exit(1)
 
     synthesize_translations(to_language, single_line, result, output,
@@ -146,8 +146,8 @@ if __name__ == "__main__":
 
     private_dic = get_private(path, "azspeech")
 
-    key = private_dic["Azure subscription"]["key"]
+    key = private_dic["Azure Speech"]["key"]
 
-    region = private_dic["Azure subscription"]["location"]
+    region = private_dic["Azure Speech"]["location"]
 
     translate_speech_to_text(from_language, to_language, True, args.output, key, region)

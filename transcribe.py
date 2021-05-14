@@ -47,9 +47,9 @@ path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
 private_dic = get_private(path, "azspeech")
 
-key = private_dic["Azure subscription"]["key"]
+key = private_dic["Azure Speech"]["key"]
 
-location = private_dic["Azure subscription"]["location"]
+location = private_dic["Azure Speech"]["location"]
 
 #-----------------------------------------------------------------------
 # Set up a speech configuration.

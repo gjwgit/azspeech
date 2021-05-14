@@ -62,9 +62,9 @@ path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
 private_dic = get_private(path, "azspeech")
 
-key = private_dic["Azure subscription"]["key"]
+key = private_dic["Azure Speech"]["key"]
 
-location = private_dic["Azure subscription"]["location"]
+location = private_dic["Azure Speech"]["location"]
 
 # ----------------------------------------------------------------------
 # Read the text to be translated.
@@ -116,7 +116,7 @@ if len(text):
     for sentence in text:
         result = speech_synthesizer.speak_text_async(sentence).get()
         if str(result.reason) == "ResultReason.Canceled":
-            print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+            print("The Azure Speech key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
             sys.exit(1)
 else:
     if sys.stdin.isatty():
@@ -126,7 +126,7 @@ else:
                     break
                 result = speech_synthesizer.speak_text_async(line).get()
                 if str(result.reason) == "ResultReason.Canceled":
-                    print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+                    print("The Azure Speech key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
                     sys.exit(1)
         except KeyboardInterrupt:
             pass
@@ -134,5 +134,5 @@ else:
         for line in sys.stdin.readlines():
             result = speech_synthesizer.speak_text_async(line).get()
             if str(result.reason) == "ResultReason.Canceled":
-                print("The Azure subscription key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
+                print("The Azure Speech key is not correct. Please run ml configure azspeech to update your key.",  file=sys.stderr)
                 sys.exit(1)

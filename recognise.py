@@ -30,7 +30,7 @@ def recognise(file, verify, single_line, key):
         profile_id = result.json()['profileId']
     except:
         if result.json()['error']['code']=='401':
-            print("The Azure subscription key is not correct, please run ml configure azspeech to update your key. ",  file=sys.stderr)
+            print("The Azure Speech key is not correct, please run ml configure azspeech to update your key. ",  file=sys.stderr)
         else:
             error = result.json()['error']['message']
             print(f"Error: {error}",  file=sys.stderr)
@@ -143,8 +143,8 @@ if __name__ == "__main__":
 
     private_dic = get_private(path, "azspeech")
 
-    key = private_dic["Azure subscription"]["key"]
-    location = private_dic["Azure subscription"]["location"]
+    key = private_dic["Azure Speech"]["key"]
+    location = private_dic["Azure Speech"]["location"]
 
     RECOGNISE_FLAG = True
 

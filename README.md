@@ -10,7 +10,7 @@ through Azure's Cognitive Services. This service can support speech
 to text, text to speech, speech translation and Speaker Recognition 
 capabilities.
 
-An Azure subscription is required, allowing up to 5,000 free
+An Azure Speech is required, allowing up to 5,000 free
 transactions per month (https://azure.microsoft.com/free/). Through
 the [Azure Portal](https://ms.portal.azure.com) create a Speech
 resource and use the resulting key and endpoint from the portal for
