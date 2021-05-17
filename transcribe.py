@@ -14,7 +14,7 @@
 
 # Import the required libraries.
 
-from mlhub.utils import get_cmd_cwd, get_private
+from mlhub.pkg import get_cmd_cwd, get_private
 import argparse
 import azure.cognitiveservices.speech as speechsdk
 import os
