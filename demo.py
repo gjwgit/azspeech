@@ -13,8 +13,7 @@
 # ----------------------------------------------------------------------
 
 # Import the required libraries.
-from mlhub.pkg import mlask, mlcat
-from mlhub.utils import get_private
+from mlhub.pkg import mlask, mlcat, request_priv_info
 from recognise import recognise
 from translate import translate_speech_to_text
 import azure.cognitiveservices.speech as speechsdk
@@ -31,16 +30,8 @@ Speaker Recognition capabilities.
 # ----------------------------------------------------------------------
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
+key, location = request_priv_info()
 
-PRIVATE_FILE = "private.json"
-
-path = os.path.join(os.getcwd(), PRIVATE_FILE)
-
-private_dic = get_private(path, "azspeech")
-
-key = private_dic["Azure Speech"]["key"]
-
-location = private_dic["Azure Speech"]["location"]
 
 # Recognition is experimental and is only available at present
 # 20210428 from the westus data centre.
