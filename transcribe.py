@@ -14,7 +14,8 @@
 
 # Import the required libraries.
 
-from mlhub.pkg import get_cmd_cwd, get_private
+from mlhub.pkg import get_cmd_cwd
+from utils import request_priv_info
 import argparse
 import azure.cognitiveservices.speech as speechsdk
 import os
@@ -41,15 +42,7 @@ args = option_parser.parse_args()
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
 
-PRIVATE_FILE = "private.json"
-
-path = os.path.join(os.getcwd(), PRIVATE_FILE)
-
-private_dic = get_private(path, "azspeech")
-
-key = private_dic["Azure Speech"]["key"]
-
-location = private_dic["Azure Speech"]["location"]
+key, location = request_priv_info()
 
 #-----------------------------------------------------------------------
 # Set up a speech configuration.
