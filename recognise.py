@@ -129,7 +129,7 @@ if __name__ == "__main__":
 
     option_parser.add_argument(
         '--verify',
-        "-v",
+        "-y",
         help='the wav file which wants to verify')
 
     args = option_parser.parse_args()
