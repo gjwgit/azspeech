@@ -93,8 +93,8 @@ if args.voice:
     speech_conf.speech_synthesis_voice_name = args.voice
 
 if args.output:
-    file_locatoin = os.path.join(os.getcwd(), args.output)
-    audio_conf = AudioOutputConfig(filename = file_locatoin)
+    file_location = os.path.join(get_cmd_cwd(), args.output)
+    audio_conf = AudioOutputConfig(filename = file_location)
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_conf,
                                                      audio_config=audio_conf)
 else:
