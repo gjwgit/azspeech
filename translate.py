@@ -6,6 +6,7 @@ import azure.cognitiveservices.speech as speechsdk
 import os
 import pandas
 import sys
+from mlhub.pkg import get_cmd_cwd
 
 # ----------------------------------------------------------------------
 # Translate the speech to another language speech
@@ -95,7 +96,8 @@ def synthesize_translations(to_language, single_line, result, output, key, regio
         sys.exit(1)
 
     if output:
-        audio_conf = speechsdk.audio.AudioOutputConfig(filename=output)
+        file_location = os.path.join(get_cmd_cwd(), output)
+        audio_conf = speechsdk.audio.AudioOutputConfig(filename=file_location)
         synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_conf,
                                                   audio_config=audio_conf)
     else:
