@@ -170,7 +170,7 @@ characteristics.
     mlcat("", """The fourth audio to be verified...
 """)
     os.system(f'aplay {fourth} >/dev/null 2>&1')
-    recognise([first, second, third], fourth, False, key)
+    recognise([first, second, third, fourth],  False, key)
     print("")
 else:
 
