@@ -7,7 +7,7 @@ import sys
 import wave
 
 
-def recognise(file, verify, single_line, key):
+def recognise(input_file, single_line, key):
     # -----------------------------------------------------------------------
     # Create verification voice profile
     # -----------------------------------------------------------------------
@@ -31,11 +31,10 @@ def recognise(file, verify, single_line, key):
         profile_id = result.json()['profileId']
     except:
         if result.json()['error']['code']=='401':
-            print("The Azure Speech key is not correct, please run ml configure azspeech to update your key. ",  file=sys.stderr)
+            sys.exit("The Azure Speech key is not correct, please run ml configure azspeech to update your key. ")
         else:
             error = result.json()['error']['message']
-            print(f"Error: {error}",  file=sys.stderr)
-        sys.exit(1)
+            sys.exit(f"Error: {error}")
 
     enroll_url = create_profile_url + "/" + profile_id + "/enrollments"
     enroll_header = {
@@ -45,13 +44,12 @@ def recognise(file, verify, single_line, key):
 
     # Add three sample audios
     for i in range(0, 3):
-        path = os.path.join(get_cmd_cwd(), file[i])
+        path = os.path.join(get_cmd_cwd(), input_file[i])
 
         try:
             w = wave.open(path, "rb")
         except FileNotFoundError:
-            print(f"Error: wrong sample file location. \n{file[i]}", file=sys.stderr)
-            sys.exit(1)
+            sys.exit(f"Error: wrong sample file location. \n{input_file[i]}")
 
         # Convert audio file into binary format
         binary_data = w.readframes(w.getnframes())
@@ -62,11 +60,11 @@ def recognise(file, verify, single_line, key):
         try:
             if result.json()['error']['message']:
                 error = result.json()['error']['message']
-                print(f"The sample audio file {file[i]} error: {error}", file=sys.stderr)
+                print(f"The sample audio file {input_file[i]} error: {error}", file=sys.stderr)
         except:
             pass
         else:
-            sys.exit(0)
+            sys.exit(1)
 
     # -----------------------------------------------------------------------
     # Verify the audio
@@ -78,13 +76,12 @@ def recognise(file, verify, single_line, key):
         'Content-Type': 'audio/wav; codecs=audio/pcm; samplerate=16000'
     }
 
-    path = os.path.join(get_cmd_cwd(), verify)
+    path = os.path.join(get_cmd_cwd(), input_file[3])
 
     try:
         w = wave.open(path, "rb")
     except FileNotFoundError:
-        print(f"Error: wrong verification file location.\n{verify}", file=sys.stderr)
-        sys.exit(1)
+        sys.exit(f"Error: wrong verification file location.\n{input_file[3]}")
 
     # Convert audio file into binary format
     binary_data = w.readframes(w.getnframes())
@@ -99,8 +96,7 @@ def recognise(file, verify, single_line, key):
             print(result.json()['recognitionResult'] + ", " + str(result.json()['score']))
     except:
         error = result.json()['error']['message']
-        print(f"Error: {error}", file=sys.stderr)
-        sys.exit(1)
+        sys.exit(f"Error: {error}")
 
     # -----------------------------------------------------------------------
     # Delete the voice profile
@@ -122,15 +118,10 @@ if __name__ == "__main__":
     option_parser = argparse.ArgumentParser(add_help=False)
 
     option_parser.add_argument(
-        '--file',
-        "-f",
+        '--input',
+        "-i",
         action='append',
         help='wav input file')
-
-    option_parser.add_argument(
-        '--verify',
-        "-y",
-        help='the wav file which wants to verify')
 
     args = option_parser.parse_args()
 
@@ -145,15 +136,14 @@ if __name__ == "__main__":
     if location != "westus":
         RECOGNISE_FLAG = False
 
-    sample = args.file
-    target = args.verify
+    input_file = args.input
 
     # ----------------------------------------------------------------------
     # Run RECOGNISE
     # ----------------------------------------------------------------------
 
     if RECOGNISE_FLAG:
-        recognise(sample, target, True, key)
+        recognise(input_file, True, key)
     else:
         print("This service currently only supported in Azure Speech resources "
               "created in the westus region. \nIf you want to use this service, please "
