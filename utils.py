@@ -13,8 +13,7 @@ def request_priv_info():
 
     values = get_private(path, "azspeech", "Azure Speech")
 
-    subscription_key = values[0]
+    subscription_key, location = values
 
-    endpoint = values[1]
+    return subscription_key, location
 
-    return subscription_key, endpoint
