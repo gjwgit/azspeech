@@ -11,9 +11,10 @@ def request_priv_info():
 
     path = os.path.join(os.getcwd(), PRIVATE_FILE)
 
-    private_dic = get_private(path, "azspeech")
+    values = get_private(path, "azspeech", "Azure Speech")
 
-    subscription_key = private_dic["Azure Speech"]["key"]
+    subscription_key = values[0]
 
-    endpoint = private_dic["Azure Speech"]["location"]
+    endpoint = values[1]
+
     return subscription_key, endpoint
