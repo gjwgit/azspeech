@@ -1,12 +1,11 @@
 # Import the required libraries.
 
-from utils import request_priv_info
 import argparse
 import azure.cognitiveservices.speech as speechsdk
 import os
 import pandas
 import sys
-from mlhub.pkg import get_cmd_cwd
+from mlhub.pkg import get_cmd_cwd, get_private
 
 # ----------------------------------------------------------------------
 # Translate the speech to another language speech
@@ -142,6 +141,6 @@ if __name__ == "__main__":
     # Request subscription key and location from user.
     # ----------------------------------------------------------------------
 
-    key, region = request_priv_info()
+    key, region = get_private()
 
     translate_speech_to_text(from_language, to_language, True, args.output, key, region)
