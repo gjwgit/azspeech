@@ -21,8 +21,7 @@ import argparse
 import azure.cognitiveservices.speech as speechsdk
 from azure.cognitiveservices.speech.audio import AudioOutputConfig
 
-from mlhub.pkg import get_cmd_cwd
-from utils import request_priv_info
+from mlhub.pkg import get_cmd_cwd, get_private
 
 # -----------------------------------------------------------------------
 # Process the command line.
@@ -56,7 +55,7 @@ args = option_parser.parse_args()
 # ----------------------------------------------------------------------
 # Request subscription key and location from user.
 # ----------------------------------------------------------------------
-key, location = request_priv_info()
+key, location = get_private()
 
 # ----------------------------------------------------------------------
 # Read the text to be translated.

@@ -1,5 +1,4 @@
-from mlhub.pkg import get_cmd_cwd
-from utils import request_priv_info
+from mlhub.pkg import get_cmd_cwd, get_private
 import argparse
 import os
 import requests
@@ -129,7 +128,7 @@ if __name__ == "__main__":
     # Request subscription key and location from user.
     # ----------------------------------------------------------------------
 
-    key, location = request_priv_info()
+    key, location = get_private()
 
     RECOGNISE_FLAG = True
 

@@ -6,7 +6,8 @@ meta:
   version      : 4.3.2
   languages    : py
   license      : mit
-  private      : key*, location
+  private      :
+    Azure Speech: key*, location
   author       : Graham.Williams@togaware.com, Jingjing.Shi@anu.edu.au
   url          : https://github.com/gjwgit/azspeech
 dependencies:
