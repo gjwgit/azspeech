@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Monday 2021-06-07 12:33:00 AEST Graham Williams>
+# Time-stamp: <Monday 2021-06-07 14:28:59 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under GPLv3.
@@ -21,6 +21,7 @@ import os
 import sys
 import textwrap
 import time
+import wave
 
 # -----------------------------------------------------------------------
 # Process the command line
@@ -64,6 +65,12 @@ if args.input:
     path = os.path.join(get_cmd_cwd(), args.input)
     if not os.path.exists(path):
         sys.exit(f"azspeech transcribe: File not found: {path}")
+
+    try:
+        w = wave.open(path)
+    except Exception as e:
+        # print(e)
+        sys.exit(f"azspeech transcribe: File does not seem to be wav audio: {path}")
 
     # Create a callback to terminate the transcription once the full
     # audio has been transcribed.
