@@ -28,7 +28,7 @@ dependencies:
     - data/verify.wav: data/
 commands:
   demo       : Demonstrate speech capabilities.
-  transcribe : Generate text from microphone or wav file. Supports --file.
+  transcribe : Generate text from microphone or wav file. Supports --file --lang.
   synthesize : Speek text from command line. Supports --file, --lang, --voice and --output.
   translate  : Translate speech from microphone. Supports --original, --target and --output.
   recognise  : Confirm that a speaker matches a known, or enrolled voice. Supports --file and --verify.
