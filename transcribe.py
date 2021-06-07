@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Time-stamp: <Monday 2021-05-03 13:59:17 AEST Graham Williams>
+# Time-stamp: <Monday 2021-06-07 12:33:00 AEST Graham Williams>
 #
 # Copyright (c) Togaware Pty Ltd. All rights reserved.
 # Licensed under GPLv3.
@@ -22,18 +22,22 @@ import sys
 import textwrap
 import time
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Process the command line
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 option_parser = argparse.ArgumentParser(add_help=False)
 
 # Currently only wav supported here. For mp3 some extra configuration
-# required. See 
+# required.
 
 option_parser.add_argument(
     '--input', "-i",
     help='wav input file')
+
+option_parser.add_argument(
+    '--lang', "-l",
+    help='source language')
 
 args = option_parser.parse_args()
 
@@ -43,25 +47,31 @@ args = option_parser.parse_args()
 
 key, location = get_private()
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 # Set up a speech configuration.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
-speech_config     = speechsdk.SpeechConfig(subscription=key, region=location)
+speech_config = speechsdk.SpeechConfig(subscription=key, region=location)
 
-#-----------------------------------------------------------------------
+if args.lang:
+    speech_config.speech_recognition_language = args.lang
+
+# -----------------------------------------------------------------------
 # Transcribe file or from microphone.
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 if args.input:
     path = os.path.join(get_cmd_cwd(), args.input)
-    
+    if not os.path.exists(path):
+        sys.exit(f"azspeech transcribe: File not found: {path}")
+
     # Create a callback to terminate the transcription once the full
     # audio has been transcribed.
 
     done = False
+
     def stop_cb(evt):
-        """Callback to stop continuous recognition upon receiving an event (evt)"""
+        """Callback to stop continuous recognition on receiving event (evt)"""
         speech_recognizer.stop_continuous_recognition()
         global done
         done = True
@@ -75,7 +85,8 @@ if args.input:
     #
     # A recognizer is then created with the given settings.
 
-    audio_config  = speechsdk.audio.AudioConfig(use_default_microphone=False, filename=path)
+    audio_config = speechsdk.audio.AudioConfig(use_default_microphone=False,
+                                               filename=path)
 
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config,
                                                    audio_config=audio_config)
