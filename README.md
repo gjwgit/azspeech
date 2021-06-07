@@ -1,8 +1,7 @@
 # Azure Speech
 
-See the [MLHub Survival
-Guide](https://survivor.togaware.com/mlhub/azspeech.html) for
-documentation.
+See the MLHub Survival Guide at
+https://survivor.togaware.com/mlhub/azspeech.html.
 
 This [MLHub](https://mlhub.ai) package provides a demonstration and
 command line tools built from the pre-built Speech models provided
