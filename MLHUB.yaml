@@ -3,7 +3,7 @@ meta:
   name         : azspeech
   title        : Azure Speech cognitive services on the cloud.
   keywords     : azure, speech synthesis, natural language processing, deep neural networks, speech to text, text to speech, transcription
-  version      : 4.4.0
+  version      : 4.4.1
   languages    : py
   license      : mit
   private      :
