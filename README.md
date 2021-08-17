@@ -133,7 +133,7 @@ Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
 
 ### A Pipeline for Speaking French
 ```console
-$ ml transcribe azspeech | ml translate aztranslate --to=fr | cut -d',' -f4- | ml synthesize azspeech --voice=fr-FR-HortenseRUS
+$ ml transcribe azspeech | ml translate aztranslate --to=fr | cut -d',' -f4- | ml synthesize azspeech --voice=fr-FR-DeniseNeural
 ```
 ### Speech Translation
 
