@@ -43,7 +43,7 @@ $ ml transcribe azspeech --input=harvard.wav
 $ ml translate azspeech --target=fr
 $ ml translate azspeech --original=zh-CN --target=fr --ouput=spoken.wav
 
-$ ml recognise azspeech --file=sample1.wav --file=sample2.wav --file=sample3.wav --verify=verify.wav
+$ ml recognise azspeech --input=sample1.wav --input=sample2.wav --input=sample3.wav --verify=verify.wav
 ```
 
 ## Usage
@@ -63,10 +63,10 @@ $ ml recognise azspeech --file=sample1.wav --file=sample2.wav --file=sample3.wav
 		
 - Command line tools:
 
-		$ ml synthesize azspeech [(--file|-f) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence] [(--output|-o) <wav file>]
-		$ ml transcribe azspeech [(--file|-f) <wav file>]
+		$ ml synthesize azspeech [(--input|-i) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence] [(--output|-o) <wav file>]
+		$ ml transcribe azspeech [(--input|-i) <wav file>]
 		$ ml translate azspeech [(--original) <from language code>] [(--target) <to language code>] [(--output) <wav file>]
-		$ ml recognise azspeech [(--file) <sample wav file>] [(--file) <sample2 wav file>] [(--file) <sample3 wav file>] [(--verify) <verify wav file>]
+		$ ml recognise azspeech [(--input) <sample wav file>] [(--input) <sample2 wav file>] [(--input) <sample3 wav file>] [(--verify) <verify wav file>]
 
 ## Command Line Tools
 
@@ -86,10 +86,10 @@ $ ml synthesize azspeech --voice=en-AU-NatashaNeural You brought a guitar to pun
 
 $ echo It's alright, we told you what to dream | ml synthesize azspeech
 
-$ ml synthesize azspeech --file=short.txt
+$ ml synthesize azspeech --input=short.txt
 $ ml synthesize azspeech --output=spoken.wav
-$ ml synthesize azspeech --lang=de-DE --file=short.txt
-$ ml synthesize azspeech --voice=fr-FR-DeniseNeural --file=short.txt
+$ ml synthesize azspeech --lang=de-DE --input=short.txt
+$ ml synthesize azspeech --voice=fr-FR-DeniseNeural --input=short.txt
 ```
 
 ### *transcribe* from microphone
@@ -116,7 +116,7 @@ $ ml transcribe azspeech | ml sentiment aztext
 0.07
 ```
 
-### *transcribe* from --file
+### *transcribe* from file
 
 The *transcribe* command can take an audio (wav) file and transcribe
 it to standard output. For large audio files this will take extra
@@ -125,7 +125,7 @@ time. Currently only wav files are supported through the command line
 
 ```console
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
-$ ml transcribe azspeech --file=harvard.wav
+$ ml transcribe azspeech --input=harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
@@ -166,7 +166,7 @@ both the speaker verification result and speech recognition result, while the si
 measures the voice similarity. 
 
 ```console
-$ ml recognise azspeech --file sample1.wav --file sample2.wav --file sample3.wav --verify verify.wav
+$ ml recognise azspeech --input sample1.wav --input sample2.wav --input sample3.wav --verify verify.wav
 ```
 
 
