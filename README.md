@@ -1,6 +1,6 @@
 # Azure Speech
 
-See the MLHub Survival Guide at
+Also see the MLHub Survival Guide at
 https://survivor.togaware.com/mlhub/azspeech.html.
 
 This [MLHub](https://mlhub.ai) package provides a demonstration and
@@ -38,7 +38,7 @@ $ ml synthesize azspeech --input=ai.txt
 $ ml synthesize azspeech --output=spoken.wav
 
 $ ml transcribe azspeech
-$ ml transcribe azspeech --input=harvard.wav
+$ ml transcribe azspeech harvard.wav
 
 $ ml translate azspeech --target=fr
 $ ml translate azspeech --original=zh-CN --target=fr --ouput=spoken.wav
@@ -64,7 +64,7 @@ $ ml recognise azspeech --input=sample1.wav --input=sample2.wav --input=sample3.
 - Command line tools:
 
 		$ ml synthesize azspeech [(--input|-i) <txt file>] [(--lang|-l) <lang>] [(--voice|-v) <voice>] [sentence] [(--output|-o) <wav file>]
-		$ ml transcribe azspeech [(--input|-i) <wav file>]
+		$ ml transcribe azspeech  [(--lang|-l) <lang>] [FILENAME]
 		$ ml translate azspeech [(--original) <from language code>] [(--target) <to language code>] [(--output) <wav file>]
 		$ ml recognise azspeech [(--input) <sample wav file>] [(--input) <sample2 wav file>] [(--input) <sample3 wav file>] [(--verify) <verify wav file>]
 
@@ -125,7 +125,7 @@ time. Currently only wav files are supported through the command line
 
 ```console
 $ wget https://github.com/realpython/python-speech-recognition/raw/master/audio_files/harvard.wav
-$ ml transcribe azspeech --input=harvard.wav
+$ ml transcribe azspeech harvard.wav
 The stale smell of old beer lingers it takes heat to bring out the odor.
 A cold dip restore's health and Zest, a salt pickle taste fine with
 Ham tacos, Al Pastore are my favorite a zestful food is the hot cross bun.
@@ -273,20 +273,7 @@ results will be shown after that.
 
 ## Resources
 
-* [MLHub](https://mlhub.ai)
-
-* [Speech Services
-  Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)
-
-* [Supported
-  Languages](https://docs.microsoft.com/en-gb/azure/cognitive-services/speech-service/language-support)
-
-* [Python code for Speech Recognizer:
-  Speech2Text](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/from-microphone)
-  
-* [Python code for Speech Synthesizer:
-  Text2Speech](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/python/text-to-speech)
-  
+* [MLHub Desktop Survival Guide](https://survivor.togaware.com/mlhub/azspeech.html)
  
 ![](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)  
 [This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
